@@ -10,23 +10,50 @@ module.exports = {
     ],
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/static/'
+        publicPath: '/dist/',
+        filename: 'bundle.js'
+    },
+    module: {
+        preLoaders: [
+            {
+                test: /\.js$/,
+                loaders: ['eslint'],
+                include: [
+                    path.resolve(__dirname, 'source')
+                ]
+            }
+        ],
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loaders: ['react-hot', 'babel-loader'],
+                plugins: ['transform-runtime']
+            }
+            // http://stackoverflow.com/questions/30006607/getting-started-with-stylus-loader-for-webpack
+            // Найти лоадер и разобраться
+            // npm install css-loader style-loader stylus-loader stylus --save-dev
+            //
+            //{
+                // test: /\.styl$/i,
+                // loader: "url-loader?limit=10000"
+            //}
+            // Добавить лоадер и разобраться
+            //{
+                // test: /\.(svg|png|jpg|jpeg)$/,
+                // loader: "url-loader?limit=10000&name=[path][name]-[hash].[ext]"
+            //}
+        ]
     },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin()
-    ],
-    module: {
-        loaders: [
-            {
-                loaders: ['react-hot', 'babel-loader'],
-                include: [
-                    path.resolve(__dirname, 'source'),
-                ],
-                test: /\.js$/,
-                plugins: ['transform-runtime'],
-            }
-        ]
-    }
+
+        // Tолько на продакшене
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
+        // })
+    ]
 }

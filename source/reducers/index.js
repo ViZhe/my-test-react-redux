@@ -1,7 +1,7 @@
 
 import { combineReducers } from 'redux'
-import * as reducers from './.'
+import area from './area'
 
 export default combineReducers({
-    reducers
+    area
 })

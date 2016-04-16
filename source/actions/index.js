@@ -1,0 +1,2 @@
+
+export { addArea } from './Area'

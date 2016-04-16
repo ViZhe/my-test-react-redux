@@ -1,5 +1,6 @@
 
 import React, { Component, PropTypes } from 'react'
+// import React, { Component } from 'react'
 import Area from './Area'
 
 export default class AreaList extends Component {

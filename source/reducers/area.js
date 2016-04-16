@@ -34,6 +34,18 @@ const initialState = {
     ]
 }
 
-export default function areaState(state = initialState) {
-    return state
+export default function areaState(state = initialState, action) {
+    switch (action.type) {
+        case 'ADD_AREA':
+            return {
+                ...state,
+                area: [
+                    ...state.area,
+                    action.payload
+                ]
+            }
+
+        default:
+            return state;
+    }
 }

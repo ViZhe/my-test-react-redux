@@ -1,11 +1,12 @@
 
+// import React, { Component } from 'react'
 import React, { Component, PropTypes } from 'react'
 
 export default class Area extends Component {
     render() {
         const { index, number, people } = this.props
 
-        return <div key={number} className='c-area'>
+        return <div className='c-area'>
             <span className='c-area__number'>{index + 1})</span>
             <span className='c-area__owner'>{people[0].name} / Участок № {number}</span>
         </div>

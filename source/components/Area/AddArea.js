@@ -1,29 +1,58 @@
 
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { addArea } from '../../actions'
+import { reduxForm } from 'redux-form'
+
+
+const validate = (values) => {
+    const errors = {}
+    if (!values.id) {
+        errors.id = 'Required'
+    }
+    if (!values.number) {
+        errors.number = 'Required'
+    }
+    if (!values.turn) {
+        errors.turn = 'Required'
+    } else if (Number(values.turn) > 3) {
+        errors.turn = 'Такой очереди не существует'
+    }
+    if (!values.square) {
+        errors.square = 'Required'
+    }
+    return errors
+}
 
 class AddArea extends Component {
     render() {
-        let input
-        const { dispatch } = this.props
+        const { fields: {id, number, turn, square}, handleSubmit} = this.props
+
         return <div className='c-add-area'>
-            <p>Add Area</p>
-            <form onSubmit={e => {
-                e.preventDefault()
-                if (!input.value.trim()) {
-                    return
-                }
-                dispatch(addArea(input.value))
-                input.value = ''
-            }}>
-                <input ref={node => {
-                    input = node
-                }} />
-                <button className='c-btn c-btn_color_green' type='submit'>Добавить участок</button>
+            <h2>Add Area</h2>
+            <form className='c-form' onSubmit={handleSubmit}>
+                <label className='c-form__label'>Id
+                    <input className={(id.touched && id.error && ' c-form__field_has-error')} {...id}/>
+                    {id.touched && id.error && <div>{id.error}</div>}
+                </label>
+                <label className='c-form__label'>Number
+                    <input className={(number.touched && number.error && ' c-form__field_has-error')} {...number}/>
+                    {number.touched && number.error && <div>{number.error}</div>}
+                </label>
+                <label className='c-form__label'>Turn
+                    <input className={(turn.touched && turn.error && ' c-form__field_has-error')} {...turn}/>
+                    {turn.touched && turn.error && <div>{turn.error}</div>}
+                </label>
+                <label className='c-form__label'>Square
+                    <input className={(square.touched && square.error && ' c-form__field_has-error')} {...square}/>
+                    {square.touched && square.error && <div>{square.error}</div>}
+                </label>
+                <button className='c-btn c-btn_color_green'>Добавить участок</button>
             </form>
         </div>
     }
 }
 
-export default connect()(AddArea)
+export default reduxForm({
+    form: 'addAreaForm',
+    fields: ['id', 'number', 'turn', 'square'],
+    validate
+})(AddArea)

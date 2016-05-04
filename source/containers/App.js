@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import {reset} from 'redux-form'
 
 import {
-    Turn,
+    Product, ProductList, AddProduct,
     AreaList, AddArea
 } from '../components'
 
@@ -18,8 +18,11 @@ export default class App extends Component {
     }
     render() {
         const { area } = this.props.area
+        const { options } = this.props.options
         return <div>
-            <Turn/>
+            <Product />
+            <AddProduct optionsList={options} />
+            <ProductList />
             <AddArea onSubmit={::this.addArea} />
             <AreaList areaList={area} />
         </div>
@@ -29,7 +32,8 @@ export default class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        area: state.area
+        area: state.area,
+        options: state.options
     }
 }
 

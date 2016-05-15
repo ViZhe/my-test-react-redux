@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {reset} from 'redux-form'
+import { reset } from 'redux-form'
 
 import {
     Product, ProductList, AddProduct,

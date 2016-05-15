@@ -8,12 +8,14 @@ const initialState = {
                 {
                     name: 'title',
                     title: 'Заголовок',
-                    type: 'text'
+                    type: 'text',
+                    default: 'text'
                 },
                 {
                     name: 'description',
                     title: 'Крактое описание',
-                    type: 'textarea'
+                    type: 'textarea',
+                    default: 'textarea'
                 }
             ]
         },
@@ -30,6 +32,17 @@ const initialState = {
                     name: 'size',
                     title: 'Ш.В.Г.',
                     type: 'text'
+                },
+                {
+                    name: 'sale',
+                    title: 'Скидки',
+                    type: 'checkbox'
+                },
+                {
+                    name: 'weekend_sale',
+                    title: 'Выходные скидки',
+                    type: 'checkbox',
+                    default: true
                 }
             ]
         }

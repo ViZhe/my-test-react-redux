@@ -5,7 +5,8 @@ import DynamicField from '../DynamicForm/DynamicField'
 
 class DynamicForm extends Component {
     render() {
-        const { options, handleSubmit } = this.props
+        // TODO: move fields to DynamicField
+        const { fields: {id}, options, handleSubmit } = this.props
 
         const optionGroups = options.map((option, index) =>
             <div key={index} className='dynamic-form__group'>
@@ -19,7 +20,8 @@ class DynamicForm extends Component {
         let output = !optionGroups ?
             <div className='c-__empty'>Параметров нет.</div> :
             <form onSubmit={handleSubmit}>
-                {optionGroups}
+                {optionGroups}                
+                <input  {...id}/> {/* TODO: move fields to DynamicField*/}
                 <button>Отправить</button>
             </form>
 

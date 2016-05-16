@@ -1,6 +1,8 @@
 
+import { ADD_AREA } from '../constants/Area'
+
 const initialState = {
-    area: [
+    list: [
         {
             id: '1asdasd',
             number: 1,
@@ -36,11 +38,11 @@ const initialState = {
 
 export default function areaState(state = initialState, action) {
     switch (action.type) {
-        case 'ADD_AREA':
+        case ADD_AREA:
             return {
                 ...state,
-                area: [
-                    ...state.area,
+                list: [
+                    ...state.list,
                     action.payload
                 ]
             }

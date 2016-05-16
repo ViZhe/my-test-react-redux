@@ -1,14 +1,11 @@
 
 import React, { Component } from 'react'
 import DynamicForm from '../DynamicForm/DynamicForm'
-import { reset } from 'redux-form'
 
 export default class addProduct extends Component {
-    addProduct() {
-        this.props.dispatch(reset('dynamicForm'))
-    }
+
     render() {
-        const { optionsList } = this.props
+        const { optionsList, onSubmit } = this.props
 
         // const hasOptions = !!optionsList.length
         // const options = !hasOptions ?
@@ -28,7 +25,7 @@ export default class addProduct extends Component {
         return <div className='c-area-list'>
             <h2>Add Product</h2>
             <p>Групп параметров: {optionsList.length}</p>
-            <DynamicForm options={optionsList} onSubmit={::this.addProduct} />
+            <DynamicForm options={optionsList} onSubmit={onSubmit} />
         </div>
     }
 }

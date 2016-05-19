@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
-import DynamicForm from '../DynamicForm/DynamicForm'
+
+import DynamicFormCreator from '../DynamicForm/DynamicFormCreator'
 
 export default class addProduct extends Component {
 
@@ -25,7 +26,11 @@ export default class addProduct extends Component {
         return <div className='c-area-list'>
             <h2>Add Product</h2>
             <p>Групп параметров: {optionsList.length}</p>
-            <DynamicForm options={optionsList} onSubmit={onSubmit} />
+            <DynamicFormCreator
+                options={optionsList}
+                onSubmit={onSubmit}
+                submitButtonText='Создать товар'
+            />
         </div>
     }
 }

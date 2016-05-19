@@ -2,31 +2,53 @@
 const initialState = [
     {
         id: 'group1',
-        name: 'Метаданные',
+        name: 'metadata',
+        title: 'Метаданные',
         fields: [
             {
                 name: 'id',
                 title: 'ID',
                 type: 'text',
-                default: '1'
+                default: '',
+                validate: [
+                    {
+                        required: true,
+                        title: 'Обязательно заполните id'
+                    },
+                    {
+                        allowedChars: '^[0-9]*?$',
+                        title: 'Допускаются только цифры'
+                    }
+                ]
             },
             {
                 name: 'title',
                 title: 'Заголовок',
                 type: 'text',
-                default: 'text'
+                default: '',
+                validate: [
+                    {
+                        required: true,
+                        title: 'Обязательно заполните Title'
+                    },
+                    {
+                        allowedChars: '^[а-яА-ЯёЁa-zA-Z]+$',
+                        title: 'Допускаются только буквы'
+                    }
+                ]
             },
             {
                 name: 'description',
                 title: 'Крактое описание',
                 type: 'textarea',
-                default: 'textarea'
+                default: 'DEFtextarea'
             }
         ]
     },
     {
         id: 'group2',
-        name: 'Смеситель',
+        name: 'smesitel',
+        title: 'Смеситель',
         fields: [
             {
                 name: 'izliv',
@@ -41,7 +63,8 @@ const initialState = [
             {
                 name: 'sale',
                 title: 'Скидки',
-                type: 'checkbox'
+                type: 'checkbox',
+                default: false
             },
             {
                 name: 'weekend_sale',

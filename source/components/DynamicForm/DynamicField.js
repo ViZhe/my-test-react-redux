@@ -2,30 +2,35 @@
 import React, { Component } from 'react'
 
 export default class DynamicField extends Component {
+
     render() {
-        const { field } = this.props
+        const { field, fields } = this.props
+        const option = fields[field.name]
+
+        option.title = field.title
 
         let output;
         switch (field.type) {
             case 'textarea':
-                output =  <textarea name={field.name} defaultValue={field.default}></textarea>
-                break;
+                output = <textarea {...option} ></textarea>
+                break
             case 'checkbox':
-                output = <input type={field.type} name={field.name} defaultChecked={field.default} />
-                break;
+                output = <input type='checkbox' {...option} />
+                break
             case 'radio':
                 output = 'todo' // defaultChecked
-                break;
+                break
             case 'select':
                 output = 'todo' // defaultValue
-                break;
+                break
             default:
-                output = <input type={field.type} name={field.name} defaultValue={field.default} />
+                output = <input type={field.type} {...option} />
         }
 
-        return <label title={field.name}>
+        return <label title={field.name} >
             {field.title}
             {output}
+            {option.touched && option.error && <div>{option.error}</div>}
             <br/>
         </label>
     }

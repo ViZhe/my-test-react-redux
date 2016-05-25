@@ -15,7 +15,8 @@ export default class DynamicField extends Component {
                 output = <textarea {...option} ></textarea>
                 break
             case 'checkbox':
-                output = <input type='checkbox' {...option} />
+                // output = <input type='checkbox' {...option} />
+                output = 'todo' // defaultChecked
                 break
             case 'radio':
                 output = 'todo' // defaultChecked
@@ -36,6 +37,5 @@ export default class DynamicField extends Component {
     }
 }
 
-// TODO: Validation for All
 // TODO: Radio fields
 // TODO: Select fields

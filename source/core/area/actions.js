@@ -1,5 +1,5 @@
 
-import { ADD_AREA } from '../constants/Area'
+import { ADD_AREA } from './constants'
 
 export const addArea = (data) => {
     return {

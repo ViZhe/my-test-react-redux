@@ -1,7 +1,7 @@
 
-import { ADD_PRODUCT } from '../constants/Product'
+import { ADD_PRODUCT } from './constants'
 
-const initialState = {
+export const initialState = {
     list: [
         {
             id: 'item1',
@@ -11,7 +11,7 @@ const initialState = {
 }
 
 
-export default function productState(state = initialState, action) {
+export function productReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_PRODUCT:
             return {

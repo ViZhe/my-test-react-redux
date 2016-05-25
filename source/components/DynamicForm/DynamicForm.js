@@ -10,7 +10,7 @@ class DynamicForm extends Component {
 
         const optionGroups = options.map((option, index) =>
             <div key={index} className='dynamic-form__group' >
-                {option.id} - {option.name} - ({option.fields.length})
+                <div className='dynamic-form__group-header' >{option.title} - ({option.fields.length})</div>
                 {option.fields.map((field, index) =>
                     <DynamicField
                         key={index}

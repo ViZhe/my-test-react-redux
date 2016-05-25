@@ -8,10 +8,14 @@ import {
     AreaList, AddArea
 } from '../components'
 
+// TODO: вынести действия в соответствующие компоненты
+// import { addArea, addProduct } from '../actions'
+// import { areaActions } from '../core/area/actions'
+// import { productActions } from 'source/core/product/actions'
+import { addArea } from '../core/area/actions'
+import { addProduct } from '../core/product/actions'
 
-import { addArea, addProduct } from '../actions'
-
-export default class App extends Component {
+export class App extends Component {
     addArea(data) {
         this.props.dispatch(addArea(data))
         this.props.dispatch(reset('addAreaForm'))
@@ -31,13 +35,8 @@ export default class App extends Component {
     }
 }
 
-
-function mapStateToProps(state) {
-    return {
-        area: state.area,
-        options: state.options,
-        product: state.product
-    }
-}
-
-export default connect(mapStateToProps)(App)
+export default connect(state => ({
+    area: state.area,
+    options: state.options,
+    product: state.product
+}))(App)

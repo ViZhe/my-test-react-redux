@@ -1,5 +1,5 @@
 
-const initialState = [
+export const initialState = [
     {
         id: 'group1',
         name: 'metadata',
@@ -41,7 +41,7 @@ const initialState = [
                 name: 'description',
                 title: 'Крактое описание',
                 type: 'textarea',
-                default: 'DEFtextarea'
+                default: 'Default Text'
             }
         ]
     },
@@ -67,16 +67,51 @@ const initialState = [
                 default: false
             },
             {
-                name: 'weekend_sale',
-                title: 'Выходные скидки',
+                name: 'dopi',
+                title: 'Дополнительные опции',
                 type: 'checkbox',
-                default: true
+                default: 'val3',
+                elements: [
+                    {
+                        title: 'Сборка',
+                        value: 'val1'
+                    },
+                    {
+                        title: 'Доставка',
+                        value: 'val2'
+                    },
+                    {
+                        title: 'Склейка',
+                        value: 'val3'
+                    }
+                ]
+            },
+            {
+                name: 'garant',
+                title: 'Гарантия',
+                type: 'radio',
+                default: 'val2',
+                elements: [
+                    {
+                        title: '1 год',
+                        value: 'val1'
+                    },
+                    {
+                        title: '2 годa',
+                        value: 'val2'
+                    },
+                    {
+                        title: '3 годa',
+                        value: 'val3'
+                    }
+                ]
             }
+            // TODO: add select example
         ]
     }
 ]
 
 
-export default function optionsState(state = initialState) {
+export function optionsReducer(state = initialState) {
     return state;
 }

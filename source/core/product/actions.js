@@ -1,5 +1,5 @@
 
-import { ADD_PRODUCT } from '../constants/Product'
+import { ADD_PRODUCT } from './constants'
 
 export const addProduct = (data) => {
     return {

@@ -1,7 +1,7 @@
 
-import { ADD_AREA } from '../constants/Area'
+import { ADD_AREA } from './constants'
 
-const initialState = {
+export const initialState = {
     list: [
         {
             id: '1asdasd',
@@ -36,7 +36,7 @@ const initialState = {
     ]
 }
 
-export default function areaState(state = initialState, action) {
+export function areaReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_AREA:
             return {

@@ -2,6 +2,8 @@
 var path = require('path')
 var webpack = require('webpack')
 
+const NODE_ENV = process.env.NODE_ENV
+
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
@@ -37,16 +39,21 @@ module.exports = {
             //
             //{
                 // test: /\.styl$/i,
-                // loader: "url-loader?limit=10000"
+                // loader: 'url-loader?limit=10000'
             //}
             // Добавить лоадер и разобраться
             //{
                 // test: /\.(svg|png|jpg|jpeg)$/,
-                // loader: "url-loader?limit=10000&name=[path][name]-[hash].[ext]"
+                // loader: 'url-loader?limit=10000&name=[path][name]-[hash].[ext]'
             //}
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(NODE_ENV)
+            }
+        }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin()
 

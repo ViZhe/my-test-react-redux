@@ -6,9 +6,7 @@ import reducers from './reducers'
 
 const middleware = [] // TODO: add thunk
 
-console.log('TODO: process.env.NODE_ENV')
-console.log(process.env.NODE_ENV)
-if (process.env.NODE_ENV === 'development') { // TODO: not work. process.env.NODE_ENV - empty
+if (process.env.NODE_ENV === 'development') {
       const createLogger = require('redux-logger')
 
       middleware.push(createLogger())

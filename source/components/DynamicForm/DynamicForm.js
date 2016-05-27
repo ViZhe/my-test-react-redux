@@ -2,7 +2,8 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 
-import DynamicField from '../DynamicForm/DynamicField'
+import DynamicFieldAuto from './DynamicFieldAuto'
+
 
 class DynamicForm extends Component {
     render() {
@@ -12,7 +13,7 @@ class DynamicForm extends Component {
             <div key={index} className='dynamic-form__group' >
                 <div className='dynamic-form__group-header' >{option.title} - ({option.fields.length})</div>
                 {option.fields.map((field, index) =>
-                    <DynamicField
+                    <DynamicFieldAuto
                         key={index}
                         field={field}
                         fields={fields}

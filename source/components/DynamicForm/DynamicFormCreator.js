@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react'
 
-import DynamicForm from '../DynamicForm/DynamicForm'
+import DynamicForm from './DynamicForm'
+
 
 export default class DynamicFormCreator extends Component {
     render() {

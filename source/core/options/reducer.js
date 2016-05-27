@@ -64,13 +64,19 @@ export const initialState = [
                 name: 'sale',
                 title: 'Скидки',
                 type: 'checkbox',
-                default: false
+                default: ['true'],
+                elements: [
+                    {
+                        title: 'Да',
+                        value: 'true'
+                    }
+                ]
             },
             {
                 name: 'dopi',
                 title: 'Дополнительные опции',
                 type: 'checkbox',
-                default: 'val3',
+                default: ['val1', 'val3'],
                 elements: [
                     {
                         title: 'Сборка',
@@ -90,7 +96,7 @@ export const initialState = [
                 name: 'garant',
                 title: 'Гарантия',
                 type: 'radio',
-                default: 'val2',
+                default: ['val2'],
                 elements: [
                     {
                         title: '1 год',

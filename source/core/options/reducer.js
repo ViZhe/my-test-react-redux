@@ -59,58 +59,58 @@ export const initialState = [
                 name: 'size',
                 title: 'Ш.В.Г.',
                 type: 'text'
-            },
-            {
-                name: 'sale',
-                title: 'Скидки',
-                type: 'checkbox',
-                default: ['true'],
-                elements: [
-                    {
-                        title: 'Да',
-                        value: 'true'
-                    }
-                ]
-            },
-            {
-                name: 'dopi',
-                title: 'Дополнительные опции',
-                type: 'checkbox',
-                default: ['val1', 'val3'],
-                elements: [
-                    {
-                        title: 'Сборка',
-                        value: 'val1'
-                    },
-                    {
-                        title: 'Доставка',
-                        value: 'val2'
-                    },
-                    {
-                        title: 'Склейка',
-                        value: 'val3'
-                    }
-                ]
-            },
-            {
-                name: 'garant',
-                title: 'Гарантия',
-                type: 'radio',
-                default: ['val2'],
-                elements: [
-                    {
-                        title: '1 год',
-                        value: 'val1'
-                    },
-                    {
-                        title: '2 годa',
-                        value: 'val2'
-                    },
-                    {
-                        title: '3 годa',
-                        value: 'val3'
-                    }
-                ]
+            // },
+            // {
+            //     name: 'sale',
+            //     title: 'Скидки',
+            //     type: 'checkbox',
+            //     default: ['true'],
+            //     elements: [
+            //         {
+            //             title: 'Да',
+            //             value: 'true'
+            //         }
+            //     ]
+            // },
+            // {
+            //     name: 'dopi',
+            //     title: 'Дополнительные опции',
+            //     type: 'checkbox',
+            //     default: ['val1', 'val3'],
+            //     elements: [
+            //         {
+            //             title: 'Сборка',
+            //             value: 'val1'
+            //         },
+            //         {
+            //             title: 'Доставка',
+            //             value: 'val2'
+            //         },
+            //         {
+            //             title: 'Склейка',
+            //             value: 'val3'
+            //         }
+            //     ]
+            // },
+            // {
+            //     name: 'garant',
+            //     title: 'Гарантия',
+            //     type: 'radio',
+            //     default: ['val2'],
+            //     elements: [
+            //         {
+            //             title: '1 год',
+            //             value: 'val1'
+            //         },
+            //         {
+            //             title: '2 годa',
+            //             value: 'val2'
+            //         },
+            //         {
+            //             title: '3 годa',
+            //             value: 'val3'
+            //         }
+            //     ]
             }
             // TODO: add select example
         ]

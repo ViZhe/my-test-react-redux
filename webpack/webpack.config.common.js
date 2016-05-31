@@ -1,6 +1,6 @@
 
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
 
 const NODE_ENV = process.env.NODE_ENV
 
@@ -12,7 +12,7 @@ module.exports = {
         './source/index'
     ],
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, '..', 'dist'),
         publicPath: '/dist/',
         filename: 'bundle.js'
     },
@@ -22,16 +22,18 @@ module.exports = {
                 test: /\.js$/,
                 loaders: ['eslint'],
                 include: [
-                    path.resolve(__dirname, 'source')
+                    path.resolve(__dirname, '..',  'source')
                 ]
             }
         ],
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
                 loaders: ['react-hot', 'babel-loader'],
-                plugins: ['transform-runtime']
+                plugins: ['transform-runtime'],
+                include: [
+                    path.resolve(__dirname, '..',  'source')
+                ]
             }
             // http://stackoverflow.com/questions/30006607/getting-started-with-stylus-loader-for-webpack
             // Найти лоадер и разобраться

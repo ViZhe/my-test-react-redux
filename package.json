@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "NODE_ENV=development node server.js",
-    "prod": "NODE_ENV=production node server.js"
+    "prod": "npm run clean && NODE_ENV=production webpack --config webpack/webpack.config.auto.js --progress --color",
+    "clean": "rm -rf dist"
   },
   "author": "ViZhe",
   "license": "MIT",

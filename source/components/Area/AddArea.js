@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react'
-import { reduxForm } from 'redux-form'
+import { reduxForm, reset } from 'redux-form'
+
+import { addArea } from '../../core/area/actions'
 
 
 const validate = (values) => {
@@ -23,12 +25,16 @@ const validate = (values) => {
 }
 
 class AddArea extends Component {
+    addArea(data) {
+        this.props.dispatch(addArea(data))
+        this.props.dispatch(reset('addAreaForm'))
+    }
     render() {
-        const { fields: {id, number, turn, square}, handleSubmit} = this.props
+        const { fields: {id, number, turn, square}} = this.props
 
         return <div className='c-add-area'>
             <h2>Add Area</h2>
-            <form className='c-form' onSubmit={handleSubmit}>
+            <form className='c-form' onSubmit={::this.addArea}>
                 <label className='c-form__label'>Id
                     <input className={(id.touched && id.error && ' c-form__field_has-error')} {...id}/>
                     {id.touched && id.error && <div>{id.error}</div>}

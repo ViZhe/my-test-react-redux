@@ -1,22 +1,24 @@
 
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+
 import Area from './Area'
 
 
-export default class AreaList extends Component {
+export class AreaList extends Component {
     render() {
-        const { areaList } = this.props
+        const { area } = this.props
 
-        const hasAreas = !!areaList.length
+        const hasAreas = !!area.length
         const areas = !hasAreas ?
             <div className='c-area-list__empty'>Участки не найдены.</div> :
-            areaList.map((area, index) =>
-                <Area key={'areakey' + index} index={index} {...area} />
+            area.map((item, index) =>
+                <Area key={'areakey' + index} index={index} {...item} />
             )
 
         return <div className='c-area-list'>
             <h2>Area List</h2>
-            <p>Всего участков - {areaList.length}</p>
+            <p>Всего участков - {area.length}</p>
             {areas}
         </div>
     }
@@ -24,8 +26,12 @@ export default class AreaList extends Component {
 
 
 AreaList.propTypes = {
-    areaList: PropTypes.arrayOf(PropTypes.shape({
+    area: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,
         number: PropTypes.number.isRequired
     }).isRequired).isRequired
 }
+
+export default connect(state => ({
+    area: state.area.list
+}))(AreaList)

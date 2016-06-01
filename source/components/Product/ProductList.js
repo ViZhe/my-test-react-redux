@@ -1,17 +1,18 @@
 
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 
-export default class ProductList extends Component {
+export class ProductList extends Component {
     render() {
-        const { productList } = this.props
+        const { product } = this.props
 
-        const hasProducts = !!productList.length
+        const hasProducts = !!product.length
         const products = !hasProducts ?
             <div className='c-area-list__empty'>Товаров нет</div> :
-            productList.map((product, index) =>
+            product.map((item, index) =>
                 <div key={index}>
-                    {product.id} - {product.description} - {product.title}
+                    {item.id} - {item.description} - {item.title}
                 </div>
             )
 
@@ -21,3 +22,7 @@ export default class ProductList extends Component {
         </div>
     }
 }
+
+export default connect(state => ({
+    product: state.product.list
+}))(ProductList)

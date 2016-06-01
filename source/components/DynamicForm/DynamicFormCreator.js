@@ -61,7 +61,7 @@ export default class DynamicFormCreator extends Component {
                     validate={validate}
                     onSubmit={onSubmit}
                     submitButtonText={submitButtonText}
-                    normalize={{title: value => value && value.toUpperCase()}}
+                    normalize={{title: value => value && value.toUpperCase()}} //  TODO: check it
                 />
     }
 }

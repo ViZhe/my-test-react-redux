@@ -1,36 +1,32 @@
 
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { reset } from 'redux-form'
 
 import DynamicFormCreator from '../DynamicForm/DynamicFormCreator'
+import { addProduct } from '../../core/product/actions'
 
 
-export default class addProduct extends Component {
+export class AddProduct extends Component {
+    addProduct(data) {
+        this.props.dispatch(addProduct(data))
+        this.props.dispatch(reset('dynamicForm'))
+    }
     render() {
-        const { optionsList, onSubmit } = this.props
-
-        // const hasOptions = !!optionsList.length
-        // const options = !hasOptions ?
-        //     <div className='c-area-list__empty'>Участки не найдены.</div> :
-        //     optionsList.map((options, index) =>
-        //         <div key={index}>{options.name} - {index}
-        //
-        //             {/*{options.fields.map((field, index) =>
-        //                 <div key={index}>
-        //                     {field.title}
-        //                     {field.type}
-        //                 </div>
-        //             )}*/}
-        //         </div>
-        //     )
+        const { options } = this.props
 
         return <div className='c-area-list'>
             <h2>Add Product</h2>
-            <p>Групп параметров: {optionsList.length}</p>
+            <p>Групп параметров: {options.length}</p>
             <DynamicFormCreator
-                options={optionsList}
-                onSubmit={onSubmit}
+                options={options}
+                onSubmit={::this.addProduct}
                 submitButtonText='Создать товар'
             />
         </div>
     }
 }
+
+export default connect(state => ({
+    options: state.options
+}))(AddProduct)

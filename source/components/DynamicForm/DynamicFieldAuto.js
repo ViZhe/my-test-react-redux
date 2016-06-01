@@ -9,7 +9,6 @@ import DynamicFieldSelect from './DynamicFieldSelect'
 
 
 export default class DynamicFieldAuto extends Component {
-
     render() {
         const { field, fields } = this.props
         const option = fields[field.name]

@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 
 
 export default class DynamicFieldTextarea extends Component {
-
     render() {
         const { field, option } = this.props
 

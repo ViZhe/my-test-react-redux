@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 
 import DynamicFormCreator from '../DynamicForm/DynamicFormCreator'
 
-export default class addProduct extends Component {
 
+export default class addProduct extends Component {
     render() {
         const { optionsList, onSubmit } = this.props
 

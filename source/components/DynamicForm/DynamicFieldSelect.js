@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 
 
 export default class DynamicFieldSelect extends Component {
-
     render() {
         const { field, option } = this.props
 

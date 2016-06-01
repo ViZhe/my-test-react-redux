@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 
 
 export default class DynamicFieldCheckbox extends Component {
-
     render() {
         const { field, option } = this.props
 

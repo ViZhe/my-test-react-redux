@@ -1,29 +1,26 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const NODE_ENV = process.env.NODE_ENV
 
 module.exports = {
-    devtool: 'cheap-module-eval-source-map',
     entry: [
-        'webpack-hot-middleware/client',
         'babel-polyfill',
         './source/index'
     ],
     output: {
-        path: path.join(__dirname, '..', 'dist'),
-        publicPath: '/dist/',
-        filename: 'bundle.js'
+        path: path.resolve(process.cwd(), 'dist'),
+        publicPath: '/',
+        filename: 'hoppas-[hash].js',
+        chunkFilename: '[id].[hash].chunk.js' // TODO: test it
     },
     module: {
         preLoaders: [
             {
                 test: /\.js$/,
                 loaders: ['eslint'],
-                include: [
-                    path.resolve(__dirname, '..',  'source')
-                ]
+                exclude: /node_modules/
             }
         ],
         loaders: [
@@ -31,9 +28,7 @@ module.exports = {
                 test: /\.js$/,
                 loaders: ['react-hot', 'babel-loader'],
                 plugins: ['transform-runtime'],
-                include: [
-                    path.resolve(__dirname, '..',  'source')
-                ]
+                exclude: /node_modules/
             }
             // http://stackoverflow.com/questions/30006607/getting-started-with-stylus-loader-for-webpack
             // Найти лоадер и разобраться
@@ -51,19 +46,11 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(NODE_ENV)
-            }
-        }),
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin()
-
-        // Tолько на продакшене
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         warnings: false
-        //     }
-        // })
+        new HtmlWebpackPlugin({
+            template: 'source/index.html',
+            inject: true
+            // hash: true
+        })
     ]
 }

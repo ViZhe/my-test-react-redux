@@ -1,19 +1,18 @@
 
 import React, { Component } from 'react'
-
-import {
-    ProductList, AddProduct,
-    AreaList, AddArea
-} from '../components'
+import { Link } from 'react-router'
 
 
 export default class App extends Component {
     render() {
         return <div>
-            <AddProduct />
-            <ProductList />
-            <AddArea />
-            <AreaList />
+            <h1>APP</h1>
+            <ul>
+                <li><Link to='/' activeClassName='active' onlyActiveOnIndex={true} >Main</Link></li>
+                <li><Link to='/product' activeClassName='active' >Product</Link></li>
+                <li><Link to='/area' activeClassName='active' >Area</Link></li>
+            </ul>
+            {this.props.children}
         </div>
     }
 }

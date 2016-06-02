@@ -6,7 +6,7 @@
 
 
 ## TODO
-- [ ] Routing
+- [X] Routing
 - [ ] Immutable
 - [ ] Styles
     - [ ] Stylus || PostCSS + SugarSS
@@ -14,5 +14,7 @@
     - [ ] cssnano
     - [ ] linter
 - [ ] SSR
+- [ ] add propTypes in components
+- [ ] cover tests
 - [ ] logs
 - [ ] ???

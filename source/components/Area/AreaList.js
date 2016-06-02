@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import Area from './Area'
+import AreaListItem from './AreaListItem'
 
 
 export class AreaList extends Component {
@@ -13,11 +13,11 @@ export class AreaList extends Component {
         const areas = !hasAreas ?
             <div className='c-area-list__empty'>Участки не найдены.</div> :
             area.map((item, index) =>
-                <Area key={'areakey' + index} index={index} {...item} />
+                <AreaListItem key={'areakey' + index} index={index} {...item} />
             )
 
         return <div className='c-area-list'>
-            <h2>Area List</h2>
+            <h3>Area List</h3>
             <p>Всего участков - {area.length}</p>
             {areas}
         </div>

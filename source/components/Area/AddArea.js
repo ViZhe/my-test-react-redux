@@ -33,7 +33,7 @@ class AddArea extends Component {
         const { fields: {id, number, turn, square}} = this.props
 
         return <div className='c-add-area'>
-            <h2>Add Area</h2>
+            <h3>Add Area</h3>
             <form className='c-form' onSubmit={::this.addArea}>
                 <label className='c-form__label'>Id
                     <input className={(id.touched && id.error && ' c-form__field_has-error')} {...id}/>

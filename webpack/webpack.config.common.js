@@ -49,7 +49,19 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin(),
         new HtmlWebpackPlugin({
             template: 'source/index.html',
-            inject: true
+            inject: true,
+            minify: { // TODO: enable it leter
+                // removeComments: true,
+                // collapseWhitespace: true,
+                // removeRedundantAttributes: true,
+                // useShortDoctype: true,
+                // removeEmptyAttributes: true,
+                // removeStyleLinkTypeAttributes: true,
+                // keepClosingSlash: true,
+                // minifyJS: true,
+                // minifyCSS: true,
+                // minifyURLs: true
+            }
             // hash: true
         })
     ]

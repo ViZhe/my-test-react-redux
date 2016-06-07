@@ -1,7 +1,7 @@
 
 import React, { PropTypes } from 'react'
 
-// Stateless Functional Components 
+// Stateless Functional Components
 const AreaListItem = ({index, people, number}) =>
     <div className='c-area'>
         <span className='c-area__number'>{index + 1})</span>

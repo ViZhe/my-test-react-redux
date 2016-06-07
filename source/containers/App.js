@@ -12,7 +12,7 @@ export default class App extends Component {
                 <li><Link to='/product' activeClassName='active' >Product</Link></li>
                 <li><Link to='/area' activeClassName='active' >Area</Link></li>
                 <li><Link to='/github' activeClassName='active' >Github</Link></li>
-                <li><Link to='/github/reactjs' activeClassName='active' >Github</Link></li>
+                <li><Link to='/github/reactjs' activeClassName='active' >Github:ReactJS</Link></li>
             </ul>
             {this.props.children}
         </div>

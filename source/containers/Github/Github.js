@@ -2,6 +2,11 @@
 import React, { Component } from 'react'
 
 import getGithubInfo from '../../utils/helpers'
+import {
+    GithubUserProfile,
+    GithubReposList
+} from '../../components'
+
 
 export default class Github extends Component {
     // TODO: write all better
@@ -16,6 +21,9 @@ export default class Github extends Component {
         const username = this.props.params && this.props.params.username || 'vizhe'
         this.init(username)
     }
+    componentWillReceiveProps(nextProps){
+        this.init(nextProps.params.username)
+    }
 
     init(username) {
         getGithubInfo(username).then(function(data){
@@ -27,17 +35,11 @@ export default class Github extends Component {
     }
 
     render() {
-        const { repos } = this.state
+        const { bio, repos } = this.state
         return <div>
-            <h1>Github</h1>
-            {this.props.children}
-
-            {repos.map((repo, index) => {
-                return <li key={index}>
-                        {repo.html_url && <h5>{repo.name} <a href={repo.html_url}>-></a></h5>}
-                        {repo.description && <p>{repo.description}</p>}
-                    </li>
-            })}
+            <h2>Github</h2>
+            <GithubUserProfile bio={bio} />
+            <GithubReposList repos={repos} />
         </div>
     }
 }

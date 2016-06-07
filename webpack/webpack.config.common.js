@@ -46,6 +46,7 @@ module.exports = {
         ]
     },
     plugins: [
+        // new webpack.optimize.CommonsChunkPlugin('common.js'),
         new webpack.optimize.OccurenceOrderPlugin(),
         new HtmlWebpackPlugin({
             template: 'source/index.html',

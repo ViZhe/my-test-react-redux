@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const webpackConfig = require('./webpack.config.common.js')
 
 
-webpackConfig.devtool = 'source-map'
+// webpackConfig.devtool = 'source-map' // TODO: think: it need?
 
 webpackConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin({

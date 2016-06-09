@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react'
 
-import getGithubInfo from '../../utils/helpers'
+import getGithubInfo from '../../utils/github/helpers'
+
 import {
     GithubUserProfile,
     GithubReposList

@@ -2,27 +2,55 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { loadCatalog } from '../../core/product/actions'
+import { firebaseDb } from '../../utils/firebase/helpers'
+
 
 export class ProductList extends Component {
-    render() {
-        const { product } = this.props
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: true
+        }
+    }
+    componentDidMount() {
+        const { dispatch } = this.props
 
-        const hasProducts = !!product.length
-        const products = !hasProducts ?
+        this.ref = firebaseDb.listenTo('products', {
+            context: this,
+            then(data) {
+                dispatch(loadCatalog(data))
+                this.setState({
+                    loading: false
+                })
+            }
+        })
+
+    }
+    componentWillUnmount(){
+        firebaseDb.removeBinding(this.ref)
+    }
+    render() {
+        const { products } = this.props
+        const { loading } = this.state
+
+        const hasProducts = !!products.list.length
+        const productsWrap = !hasProducts ?
             <div className='c-area-list__empty'>Товаров нет</div> :
-            product.map((item, index) =>
+            products.list.map((item, index) =>
                 <div key={index}>
-                    {item.id} - {item.description} - {item.title}
+                    {item.id} // {item.options.name} /// {item.options.article}
                 </div>
             )
 
         return <div className='c-product-list' >
             <h2>Product List</h2>
-            {products}
+            {loading && 'Данные загружаются' || productsWrap}
         </div>
     }
 }
 
 export default connect(state => ({
-    product: state.product.list
+    products: state.products
 }))(ProductList)
+// export default  ProductList

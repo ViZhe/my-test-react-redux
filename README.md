@@ -7,6 +7,7 @@
 
 ## TODO
 - [X] Routing
+- [ ] Firebase
 - [ ] Immutable
 - [ ] Styles
     - [ ] Stylus || PostCSS + SugarSS
@@ -17,4 +18,5 @@
 - [ ] add propTypes in components
 - [ ] cover tests
 - [ ] logs
+- [ ] express.js + mongoose
 - [ ] ???

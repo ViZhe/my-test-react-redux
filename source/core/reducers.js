@@ -5,7 +5,7 @@ import { reducer as formReducer } from 'redux-form'
 
 import { areaReducer } from './area'
 import { optionsReducer } from './options'
-import { productReducer } from './product'
+import { productsReducer } from './products'
 
 export default combineReducers({
     // form: formReducer.normalize({
@@ -16,5 +16,5 @@ export default combineReducers({
     form: formReducer,
     area: areaReducer,
     options: optionsReducer,
-    product: productReducer
+    products: productsReducer
 })

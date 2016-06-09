@@ -22,14 +22,14 @@ export const initialState = [
                 ]
             },
             {
-                name: 'title',
+                name: 'name',
                 title: 'Заголовок',
                 type: 'text',
                 default: '',
                 validate: [
                     {
                         required: true,
-                        title: 'Обязательно заполните Title'
+                        title: 'Обязательно заполните Name'
                     },
                     {
                         allowedChars: '^[а-яА-ЯёЁa-zA-Z]+$',

@@ -5,7 +5,7 @@ import { Route, IndexRoute } from 'react-router'
 import { App, Github } from './containers'
 import {
     Home,
-    Product,
+    Products,
     Area
 } from './components'
 
@@ -14,7 +14,7 @@ export const routes = (
     <div>
         <Route path='/' component={App} >
             <IndexRoute component={Home} />
-            <Route path='product' component={Product} />
+            <Route path='product' component={Products} />
             <Route path='area' component={Area} />
             <Route path='github' >
                 <IndexRoute component={Github} />

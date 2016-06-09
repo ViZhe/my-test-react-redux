@@ -1,9 +1,9 @@
 
 export Home from './Home/Home'
 
-export AddProduct from './Product/AddProduct'
-export Product from './Product/Product'
-export ProductList from './Product/ProductList'
+export AddProduct from './Products/AddProduct'
+export Products from './Products/Products'
+export ProductsList from './Products/ProductsList'
 
 export AddArea from './Area/AddArea'
 export Area from './Area/Area'

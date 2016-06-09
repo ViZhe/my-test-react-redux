@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 
 import {
-    ProductList, AddProduct,
+    ProductsList, AddProduct,
     AreaList, AddArea
 } from '../'
 
@@ -13,7 +13,7 @@ export default class Home extends Component {
             <h2>Home</h2>
 
             <AddProduct />
-            <ProductList />
+            <ProductsList />
             <AddArea />
             <AreaList />
         </div>

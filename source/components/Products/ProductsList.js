@@ -2,11 +2,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { loadProducts } from '../../core/product/actions'
+import { loadProducts } from '../../core/products/actions'
 import { firebaseDb } from '../../utils/firebase/helpers'
 
 
-export class ProductList extends Component {
+export class ProductsList extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -44,7 +44,7 @@ export class ProductList extends Component {
             )
 
         return <div className='c-product-list' >
-            <h2>Product List</h2>
+            <h2>Products List</h2>
             {loading && 'Данные загружаются' || productsWrap}
         </div>
     }
@@ -52,5 +52,5 @@ export class ProductList extends Component {
 
 export default connect(state => ({
     products: state.products
-}))(ProductList)
-// export default  ProductList
+}))(ProductsList)
+// export default  ProductsList

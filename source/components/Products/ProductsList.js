@@ -34,14 +34,26 @@ export class ProductsList extends Component {
         const { products } = this.props
         const { loading } = this.state
 
-        const hasProducts = !!products.list.length
+        let productKeys = Object.keys(products.list)
+        const hasProducts = !!productKeys.length
         const productsWrap = !hasProducts ?
             <div className='c-area-list__empty'>Товаров нет</div> :
-            products.list.map((item, index) =>
-                <div key={index}>
+            productKeys.map((key, index) => {
+                let item = products.list[key]
+                return <div key={index}>
                     {item.id} // {item.options.name} /// {item.options.article}
                 </div>
-            )
+
+        })
+
+        // const hasProducts = !!products.list.length
+        // const productsWrap = !hasProducts ?
+        //     <div className='c-area-list__empty'>Товаров нет</div> :
+        //     products.list.map((item, index) =>
+        //         <div key={index}>
+        //             {item.id} // {item.options.name} /// {item.options.article}
+        //         </div>
+        //     )
 
         return <div className='c-product-list' >
             <h2>Products List</h2>

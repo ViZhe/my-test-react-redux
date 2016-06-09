@@ -4,24 +4,18 @@ import { LOAD_PRODUCTS } from './constants'
 
 
 export const initialState = {
-    list: []
+    list: {}
 }
 
 export function productsReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_PRODUCT:
-            return {
-                ...state,
-                list: [
-                    ...state.list,
-                    action.payload
-                ]
-            }
+            return state
+
         case LOAD_PRODUCTS:
             return {
                 ...state,
                 list: action.payload.list
-
             }
 
         default:

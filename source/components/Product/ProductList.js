@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { loadCatalog } from '../../core/product/actions'
+import { loadProducts } from '../../core/product/actions'
 import { firebaseDb } from '../../utils/firebase/helpers'
 
 
@@ -19,7 +19,7 @@ export class ProductList extends Component {
         this.ref = firebaseDb.listenTo('products', {
             context: this,
             then(data) {
-                dispatch(loadCatalog(data))
+                dispatch(loadProducts(data))
                 this.setState({
                     loading: false
                 })

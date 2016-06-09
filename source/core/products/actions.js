@@ -1,6 +1,6 @@
 
 import { ADD_PRODUCT } from './constants'
-import { LOAD_CATALOG } from './constants'
+import { LOAD_PRODUCTS } from './constants'
 
 export const addProduct = (data) => {
     return {
@@ -15,9 +15,9 @@ export const addProduct = (data) => {
     }
 }
 
-export const loadCatalog = (data) => {
+export const loadProducts = (data) => {
     return {
-        type: LOAD_CATALOG,
+        type: LOAD_PRODUCTS,
         payload: data
     }
 }

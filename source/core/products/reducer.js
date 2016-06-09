@@ -1,6 +1,6 @@
 
 import { ADD_PRODUCT } from './constants'
-import { LOAD_CATALOG } from './constants'
+import { LOAD_PRODUCTS } from './constants'
 
 
 export const initialState = {
@@ -17,7 +17,7 @@ export function productsReducer(state = initialState, action) {
                     action.payload
                 ]
             }
-        case LOAD_CATALOG:
+        case LOAD_PRODUCTS:
             return {
                 ...state,
                 list: action.payload.list

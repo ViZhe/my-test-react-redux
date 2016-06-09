@@ -35,8 +35,7 @@ export class ProductsList extends Component {
         const { loading } = this.state
 
         let productKeys = Object.keys(products.list)
-        const hasProducts = !!productKeys.length
-        const productsWrap = !hasProducts ?
+        const productsWrap = !productKeys.length ?
             <div className='c-area-list__empty'>Товаров нет</div> :
             productKeys.map((key, index) => {
                 let item = products.list[key]

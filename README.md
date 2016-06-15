@@ -7,8 +7,8 @@
 
 ## TODO
 - [X] Routing
-- [ ] Firebase
-- [ ] Immutable
+- [X] Firebase
+- [X] Immutable
 - [ ] Styles
     - [ ] Stylus || PostCSS + SugarSS
     - [ ] autoprefixer

@@ -25,5 +25,5 @@ export class AreaList extends Component {
 }
 
 export default connect(state => ({
-    area: state.area.list
+    area: state.toJS().area.list
 }))(AreaList)

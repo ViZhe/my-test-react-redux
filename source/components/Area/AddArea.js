@@ -60,5 +60,6 @@ class AddArea extends Component {
 export default reduxForm({
     form: 'addAreaForm',
     fields: ['id', 'number', 'turn', 'square'],
+    getFormState: (state) => state.toJS().form,
     validate
 })(AddArea)

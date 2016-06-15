@@ -28,5 +28,5 @@ export class AddProduct extends Component {
 }
 
 export default connect(state => ({
-    options: state.options
+    options: state.toJS().options
 }))(AddProduct)

@@ -1,11 +1,11 @@
 
-import { combineReducers } from 'redux'
-
+import { combineReducers } from 'redux-immutable'
 import { reducer as formReducer } from 'redux-form'
 
 import { areaReducer } from './area'
 import { optionsReducer } from './options'
 import { productsReducer } from './products'
+
 
 export default combineReducers({
     // form: formReducer.normalize({

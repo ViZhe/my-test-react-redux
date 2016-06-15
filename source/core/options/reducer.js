@@ -1,5 +1,8 @@
 
-export const initialState = [
+import { fromJS } from 'immutable'
+
+
+export const initialState = fromJS([
     {
         id: 'group1',
         name: 'metadata',
@@ -115,9 +118,10 @@ export const initialState = [
             // TODO: add select example
         ]
     }
-]
+])
 
 
 export function optionsReducer(state = initialState) {
+    console.log(initialState)
     return state;
 }

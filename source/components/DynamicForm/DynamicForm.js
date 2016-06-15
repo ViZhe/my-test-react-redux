@@ -36,5 +36,6 @@ class DynamicForm extends Component {
 }
 
 export default reduxForm({
-    form: 'dynamicForm'
+    form: 'dynamicForm',
+    getFormState: (state) => state.toJS().form
 })(DynamicForm)

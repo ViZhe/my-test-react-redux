@@ -2,5 +2,6 @@
 npm-debug.log
 
 firebase.json
-database.rules.json
 .firebaserc
+
+.secret

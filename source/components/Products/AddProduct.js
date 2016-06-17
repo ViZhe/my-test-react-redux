@@ -5,12 +5,25 @@ import { reset } from 'redux-form'
 
 import DynamicFormCreator from '../DynamicForm/DynamicFormCreator'
 import { addProduct } from '../../core/products/actions'
+import * as mlabHelpers from '../../utils/mlab/helpers'
 
 
 export class AddProduct extends Component {
     addProduct(data) {
-        this.props.dispatch(addProduct(data))
-        this.props.dispatch(reset('dynamicForm'))
+        const { dispatch } = this.props
+
+        const product = {
+            id: 100,
+            deleted: false,
+            published: false,
+            createdOn: Math.floor(Date.now() / 1000), // get timestamp
+            options: data
+        }
+
+        mlabHelpers.addProducts(product).then((response) => {
+            dispatch(addProduct(response.data))
+            dispatch(reset('dynamicForm'))
+        })
     }
     render() {
         const { options } = this.props

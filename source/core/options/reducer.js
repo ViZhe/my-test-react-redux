@@ -122,6 +122,5 @@ export const initialState = fromJS([
 
 
 export function optionsReducer(state = initialState) {
-    console.log(initialState)
     return state;
 }

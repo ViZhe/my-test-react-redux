@@ -1,5 +1,5 @@
 
-import {  fromJS } from 'immutable'
+import { fromJS } from 'immutable'
 
 import {
     LOAD_PRODUCTS,
@@ -10,19 +10,19 @@ import {
 
 export const initialState = fromJS({
     // categories: {} // for foture: this catalog
-    list: {}
+    list: []
 })
 
 export function productsReducer(state = initialState, action) {
     switch (action.type) {
         case REMOVE_PRODUCT:
-            return state
+            return state.updateIn(['list'], (list) => list.filter(i => i._id.$oid !== action.payload))
 
         case ADD_PRODUCT:
-            return state.merge(action.payload)
+            return state.updateIn(['list'], (list) => list.concat(action.payload))
 
         case LOAD_PRODUCTS:
-            return state.merge(action.payload)
+            return state.updateIn(['list'], () => action.payload)
 
         default:
             return state

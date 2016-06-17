@@ -5,8 +5,6 @@ import {
     ADD_PRODUCT
 } from './constants'
 
-import { firebaseDb } from '../../utils/firebase/helpers'
-
 
 export const loadProducts = (data) => {
     return {
@@ -23,19 +21,8 @@ export const removeProduct = (data) => {
 }
 
 export const addProduct = (data) => {
-    let result = {
-        _id: 100,
-        deleted: false,
-        published: false,
-        createdOn: Math.floor(Date.now() / 1000), // get timestamp
-        options: data
-    }
-
-    firebaseDb.push('products/list', {
-        data: result
-    })
     return {
         type: ADD_PRODUCT,
-        payload: result
+        payload: data
     }
 }

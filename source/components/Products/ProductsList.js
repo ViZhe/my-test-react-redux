@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 
 import {
     loadProducts,
-    removeProduct
+    updateProductField,
+    destroyProduct
 } from '../../core/products/actions'
 import * as mlabHelpers from '../../utils/mlab/helpers'
 
@@ -23,13 +24,28 @@ export class ProductsList extends Component {
                 loading: false
             })
         })
-
     }
-    removeProduct(id) {
-        mlabHelpers.removeProducts(id).then((response) => {
-            console.log('del - response')
-            console.log(response)
-            this.props.dispatch(removeProduct(response.data._id.$oid))
+    updateProductField(id, field, value) {
+        mlabHelpers.updateProductField(id, field, value).then((response) => {
+            const product = response.data
+            let data = {
+                id: product._id.$oid,
+                field: field,
+                value: product[field]
+            }
+
+            this.props.dispatch(updateProductField(data))
+        })
+    }
+    toggleDeleteProduct(product) {
+        this.updateProductField(product._id.$oid, 'deleted', !product.deleted)
+    }
+    togglePublishProduct(product) {
+        this.updateProductField(product._id.$oid, 'published', !product.published)
+    }
+    destroyProduct(id) {
+        mlabHelpers.destroyProduct(id).then((response) => {
+            this.props.dispatch(destroyProduct(response.data._id.$oid))
         })
     }
     render() {
@@ -52,7 +68,9 @@ export class ProductsList extends Component {
                     <td style={tdStyle} >{item.options.name}</td>
                     <td style={tdStyle} >{item.template}</td>
                     <td style={tdStyle} >edit</td>
-                    <td style={tdStyle} onClick={() => ::this.removeProduct(item._id.$oid)} >delete</td>
+                    <td style={tdStyle} onClick={() => ::this.toggleDeleteProduct(item)} >{item.deleted ? 'restore' : 'detele'}</td>
+                    <td style={tdStyle} onClick={() => ::this.togglePublishProduct(item)} >{item.published ? 'unpublish' : 'publish'}</td>
+                    <td style={tdStyle} onClick={() => ::this.destroyProduct(item._id.$oid)} >destroy</td>
                 </tr>
             )
 
@@ -65,7 +83,9 @@ export class ProductsList extends Component {
                         <th>o.name</th>
                         <th>template</th>
                         <th>edit</th>
-                        <th>delete</th>
+                        <th>deleted</th>
+                        <th>published</th>
+                        <th>destroy</th>
                     </tr>
                 </thead>
                 <tbody>

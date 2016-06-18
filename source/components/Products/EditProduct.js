@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 // import ProductsList from './ProductsList'
 
 
-export default class editProduct extends Component {
+export default class EditProduct extends Component {
     render() {
         return <div>
             <h2>Edit Product</h2>

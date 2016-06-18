@@ -6,8 +6,8 @@ import { App, Github } from './containers'
 import {
     Home,
     Products,
-    addProduct,
-    editProduct,
+    AddProduct,
+    EditProduct,
     Area
 } from './components'
 
@@ -20,10 +20,10 @@ export const routes = (
             <Route path='products' component={Products} />
             <Redirect from='product' to='products' />
             <Route path='product' >
-                <Route path='add' component={addProduct} />
+                <Route path='add' component={AddProduct} />
                 <Route path=':id' >
-                    <IndexRoute component={editProduct} /> {/* TODO: pageProduct */}
-                    <Route path='edit' component={editProduct} />
+                    <IndexRoute component={EditProduct} /> {/* TODO: pageProduct */}
+                    <Route path='edit' component={EditProduct} />
                 </Route>
             </Route>
 

@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 import {
     loadProducts,
@@ -67,7 +68,7 @@ export class ProductsList extends Component {
                     <td style={tdStyle} >{item._id.$oid}</td>
                     <td style={tdStyle} >{item.options.name}</td>
                     <td style={tdStyle} >{item.template}</td>
-                    <td style={tdStyle} >edit</td>
+                    <td style={tdStyle} ><Link to={`/product/${item._id.$oid}/edit`} activeClassName='active'>edit</Link></td>
                     <td style={tdStyle} onClick={() => ::this.toggleDeleteProduct(item)} >{item.deleted ? 'restore' : 'detele'}</td>
                     <td style={tdStyle} onClick={() => ::this.togglePublishProduct(item)} >{item.published ? 'unpublish' : 'publish'}</td>
                     <td style={tdStyle} onClick={() => ::this.destroyProduct(item._id.$oid)} >destroy</td>

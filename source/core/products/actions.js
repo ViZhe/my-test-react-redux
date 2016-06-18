@@ -1,15 +1,24 @@
 
 import {
-    LOAD_PRODUCTS,
+    ADD_PRODUCT,
     DESTROY_PRODUCT,
-    UPDATE_PRODUCT_FIELD,
-    ADD_PRODUCT
+    LOAD_PRODUCT,
+    LOAD_PRODUCTS,
+    UPDATE_PRODUCT,
+    UPDATE_PRODUCT_FIELD
 } from './constants'
 
 
 export const loadProducts = (data) => {
     return {
         type: LOAD_PRODUCTS,
+        payload: data
+    }
+}
+
+export const loadProduct = (data) => {
+    return {
+        type: LOAD_PRODUCT,
         payload: data
     }
 }
@@ -24,6 +33,13 @@ export const destroyProduct = (data) => {
 export const updateProductField = (data) => {
     return {
         type: UPDATE_PRODUCT_FIELD,
+        payload: data
+    }
+}
+
+export const updateProduct = (data) => {
+    return {
+        type: UPDATE_PRODUCT,
         payload: data
     }
 }

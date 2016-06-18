@@ -32,7 +32,7 @@ export class AddProduct extends Component {
             <h2>Add Product</h2>
             <p>Групп параметров: {options.length}</p>
             <DynamicFormCreator
-                options={options}
+                options={options.defaultTemplate}
                 onSubmit={::this.addProduct}
                 submitButtonText='Создать товар'
             />

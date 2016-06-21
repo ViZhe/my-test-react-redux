@@ -3,55 +3,55 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import {
-    updateProduct,
-    loadProduct
+  updateProduct,
+  loadProduct
 } from '../../core/products/actions'
 import * as mlabHelpers from '../../utils/mlab/helpers'
 import DynamicFormCreator from '../DynamicForm/DynamicFormCreator'
 
 
 export default class EditProduct extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            loading: true
-        }
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true
     }
-    componentDidMount() {
-        mlabHelpers.getProduct(this.props.params.id).then((response) => {
-            this.props.dispatch(loadProduct(response.data))
-            this.setState({
-                loading: false
-            })
-        })
+  }
+  componentDidMount() {
+    mlabHelpers.getProduct(this.props.params.id).then((response) => {
+      this.props.dispatch(loadProduct(response.data))
+      this.setState({
+        loading: false
+      })
+    })
+  }
+  updateProduct(data) {
+    const product = {
+      updatedOn: Math.floor(Date.now() / 1000), // get timestamp
+      options: data
     }
-    updateProduct(data) {
-        const product = {
-            updatedOn: Math.floor(Date.now() / 1000), // get timestamp
-            options: data
-        }
 
-        mlabHelpers.updateProduct(this.props.params.id, product).then((response) => {
-            this.props.dispatch(updateProduct(response.data))
-        })
-    }
-    render() {
-        const { loading } = this.state
-        const { product, options } = this.props
+    mlabHelpers.updateProduct(this.props.params.id, product).then((response) => {
+      this.props.dispatch(updateProduct(response.data))
+    })
+  }
+  render() {
+    const { loading } = this.state
+    const { product, options } = this.props
 
-        const former = <DynamicFormCreator
-            options={options[product.template]}
-            onSubmit={::this.updateProduct}
-            submitButtonText='Обновить товар'
-        />
-        return <div>
-            <h2>Edit Product - {this.props.params.id}</h2>
-            {loading && 'Данные загружаются' || former}
-        </div>
-    }
+    const former = <DynamicFormCreator
+      options={options[product.template]}
+      onSubmit={::this.updateProduct}
+      submitButtonText='Обновить товар'
+    />
+    return <div>
+      <h2>Edit Product - {this.props.params.id}</h2>
+      {loading && 'Данные загружаются' || former}
+    </div>
+  }
 }
 
 export default connect(state => ({
-    product: state.toJS().products.editable,
-    options: state.toJS().options
+  product: state.toJS().products.editable,
+  options: state.toJS().options
 }))(EditProduct)

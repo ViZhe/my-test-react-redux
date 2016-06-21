@@ -8,13 +8,13 @@ import { productsReducer } from './products'
 
 
 export default combineReducers({
-    // form: formReducer.normalize({
-    //     addAreaForm: {
-    //         number: value => value && Number(value)
-    //     }
-    // }),
-    form: formReducer,
-    area: areaReducer,
-    options: optionsReducer,
-    products: productsReducer
+  // form: formReducer.normalize({
+  //     addAreaForm: {
+  //         number: value => value && Number(value)
+  //     }
+  // }),
+  form: formReducer,
+  area: areaReducer,
+  options: optionsReducer,
+  products: productsReducer
 })

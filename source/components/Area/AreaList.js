@@ -6,24 +6,24 @@ import AreaListItem from './AreaListItem'
 
 
 export class AreaList extends Component {
-    render() {
-        const { area } = this.props
+  render() {
+    const { area } = this.props
 
-        const hasAreas = !!area.length
-        const output = !hasAreas ?
-            <div className='c-area-list__empty'>Участки не найдены.</div> :
-            area.map((item, index) =>
-                <AreaListItem key={'areakey' + index} index={index} {...item} />
-            )
+    const hasAreas = !!area.length
+    const output = !hasAreas ?
+      <div className='c-area-list__empty'>Участки не найдены.</div> :
+      area.map((item, index) =>
+          <AreaListItem key={'areakey' + index} index={index} {...item} />
+      )
 
-        return <div className='c-area-list'>
-            <h3>Area List</h3>
-            <p>Всего участков - {area.length}</p>
-            {output}
-        </div>
-    }
+    return <div className='c-area-list'>
+      <h3>Area List</h3>
+      <p>Всего участков - {area.length}</p>
+      {output}
+    </div>
+  }
 }
 
 export default connect(state => ({
-    area: state.toJS().area.list
+  area: state.toJS().area.list
 }))(AreaList)

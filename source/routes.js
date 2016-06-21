@@ -4,35 +4,35 @@ import { Route, IndexRoute, Redirect } from 'react-router'
 
 import { App, Github } from './containers'
 import {
-    Home,
-    Products,
-    AddProduct,
-    EditProduct,
-    Area
+  Home,
+  Products,
+  AddProduct,
+  EditProduct,
+  Area
 } from './components'
 
 
 export const routes = (
-    <div>
-        <Route path='/' component={App} >
-            <IndexRoute component={Home} />
+  <div>
+    <Route path='/' component={App} >
+      <IndexRoute component={Home} />
 
-            <Route path='products' component={Products} />
-            <Redirect from='product' to='products' />
-            <Route path='product' >
-                <Route path='add' component={AddProduct} />
-                <Route path=':id' >
-                    <IndexRoute component={EditProduct} /> {/* TODO: pageProduct */}
-                    <Route path='edit' component={EditProduct} />
-                </Route>
-            </Route>
-
-            <Route path='area' component={Area} />
-            <Route path='github' >
-                <IndexRoute component={Github} />
-                <Route path=':username' component={Github} />
-            </Route>
+      <Route path='products' component={Products} />
+      <Redirect from='product' to='products' />
+      <Route path='product' >
+        <Route path='add' component={AddProduct} />
+        <Route path=':id' >
+          <IndexRoute component={EditProduct} /> {/* TODO: pageProduct */}
+          <Route path='edit' component={EditProduct} />
         </Route>
-        <Route path='*' component={Home} /> {/* NotFound */}
-    </div>
+      </Route>
+
+      <Route path='area' component={Area} />
+      <Route path='github' >
+        <IndexRoute component={Github} />
+        <Route path=':username' component={Github} />
+      </Route>
+    </Route>
+    <Route path='*' component={Home} /> {/* NotFound */}
+  </div>
 )

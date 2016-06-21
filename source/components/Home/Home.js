@@ -8,14 +8,14 @@ import {
 
 
 export default class Home extends Component {
-    render() {
-        return <div>
-            <h2>Home</h2>
+  render() {
+    return <div>
+      <h2>Home</h2>
 
-            <AddProduct />
-            <ProductsList />
-            <AddArea />
-            <AreaList />
-        </div>
-    }
+      <AddProduct />
+      <ProductsList />
+      <AddArea />
+      <AreaList />
+    </div>
+  }
 }

@@ -9,37 +9,37 @@ import * as mlabHelpers from '../../utils/mlab/helpers'
 
 
 export class AddProduct extends Component {
-    addProduct(data) {
-        const { dispatch } = this.props
+  addProduct(data) {
+    const { dispatch } = this.props
 
-        const product = {
-            id: 100,
-            deleted: false,
-            published: false,
-            createdOn: Math.floor(Date.now() / 1000), // get timestamp
-            options: data
-        }
-
-        mlabHelpers.addProducts(product).then((response) => {
-            dispatch(addProduct(response.data))
-            dispatch(reset('dynamicForm'))
-        })
+    const product = {
+      id: 100,
+      deleted: false,
+      published: false,
+      createdOn: Math.floor(Date.now() / 1000), // get timestamp
+      options: data
     }
-    render() {
-        const { options } = this.props
 
-        return <div className='c-area-list'>
-            <h2>Add Product</h2>
-            <p>Групп параметров: {options.length}</p>
-            <DynamicFormCreator
-                options={options.defaultTemplate}
-                onSubmit={::this.addProduct}
-                submitButtonText='Создать товар'
-            />
-        </div>
-    }
+    mlabHelpers.addProducts(product).then((response) => {
+      dispatch(addProduct(response.data))
+      dispatch(reset('dynamicForm'))
+    })
+  }
+  render() {
+    const { options } = this.props
+
+    return <div className='c-area-list'>
+      <h2>Add Product</h2>
+      <p>Групп параметров: {options.length}</p>
+      <DynamicFormCreator
+        options={options.defaultTemplate}
+        onSubmit={::this.addProduct}
+        submitButtonText='Создать товар'
+      />
+    </div>
+  }
 }
 
 export default connect(state => ({
-    options: state.toJS().options
+  options: state.toJS().options
 }))(AddProduct)

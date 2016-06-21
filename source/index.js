@@ -11,8 +11,8 @@ import { routes } from './routes'
 const store = configureStore()
 
 render(
-    <Provider store={store} >
-        <Router history={browserHistory} routes={routes} />
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store} >
+    <Router history={browserHistory} routes={routes} />
+  </Provider>,
+  document.getElementById('root')
 )

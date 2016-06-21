@@ -6,12 +6,12 @@ import AreaList from './AreaList'
 
 
 export default class Area extends Component {
-    render() {
-        return <div>
-            <h2>Area</h2>
+  render() {
+    return <div>
+      <h2>Area</h2>
 
-            <AddArea />
-            <AreaList />
-        </div>
-    }
+      <AddArea />
+      <AreaList />
+    </div>
+  }
 }

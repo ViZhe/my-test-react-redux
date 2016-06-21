@@ -37,7 +37,7 @@ export default class DynamicFormCreator extends Component {
           validField.map((valid) => {
             if (!errors[field]) {
               if (valid && valid.allowedChars) {
-                let regex = new RegExp(valid.allowedChars,'i')
+                let regex = new RegExp(valid.allowedChars, 'i')
                 if (!regex.test(values[field])) {
                   errors[field] = valid.title
                 }

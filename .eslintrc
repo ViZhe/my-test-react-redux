@@ -16,6 +16,9 @@
     "indent": [1, 2, {"SwitchCase": 1}],
     "quotes": [1, "single"],
     "semi": [2, "never"],
+    "keyword-spacing": [2],
+    "space-infix-ops": [2],
+    "comma-spacing": [2],
 
     "jsx-quotes": [1, "prefer-single"],
 

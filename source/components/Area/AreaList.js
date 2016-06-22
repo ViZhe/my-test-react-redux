@@ -10,9 +10,9 @@ export class AreaList extends Component {
     const { area } = this.props
 
     const hasAreas = !!area.length
-    const output = !hasAreas ?
-      <div className='c-area-list__empty'>Участки не найдены.</div> :
-      area.map((item, index) =>
+    const output = !hasAreas
+      ? <div className='c-area-list__empty'>Участки не найдены.</div>
+      : area.map((item, index) =>
           <AreaListItem key={'areakey' + index} index={index} {...item} />
       )
 
@@ -25,5 +25,5 @@ export class AreaList extends Component {
 }
 
 export default connect(state => ({
-  area: state.toJS().area.list
+  area: state.area.list
 }))(AreaList)

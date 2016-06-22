@@ -52,6 +52,6 @@ export default class EditProduct extends Component {
 }
 
 export default connect(state => ({
-  product: state.toJS().products.editable,
-  options: state.toJS().options
+  product: state.products.toJS().editable,
+  options: state.options.toJS()
 }))(EditProduct)

@@ -22,9 +22,9 @@ class DynamicForm extends Component {
       </div>
     )
 
-    let output = !optionGroups ?
-      <div className='c-__empty' >Параметров нет.</div> :
-      <form onSubmit={handleSubmit} >
+    let output = !optionGroups
+      ? <div className='c-__empty' >Параметров нет.</div>
+      : <form onSubmit={handleSubmit} >
         {optionGroups}
         <button>{submitButtonText ? submitButtonText : 'Отправить'}</button>
       </form>
@@ -37,5 +37,5 @@ class DynamicForm extends Component {
 
 export default reduxForm({
   form: 'dynamicForm',
-  getFormState: (state) => state.toJS().form
+  getFormState: (state) => state.form
 })(DynamicForm)

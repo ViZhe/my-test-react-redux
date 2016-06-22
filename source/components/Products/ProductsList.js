@@ -61,9 +61,9 @@ export class ProductsList extends Component {
     }
 
     let productList = products.list || []
-    const productsWrap = !productList.length ?
-      <tr><td className='c-area-list__empty'>Товаров нет</td></tr> :
-      productList.map((item, index) =>
+    const productsWrap = !productList.length
+      ? <tr><td className='c-area-list__empty'>Товаров нет</td></tr>
+      : productList.map((item, index) =>
         <tr key={index} >
           <td style={tdStyle} >{item._id.$oid}</td>
           <td style={tdStyle} >{item.options.name}</td>
@@ -98,5 +98,5 @@ export class ProductsList extends Component {
 }
 
 export default connect(state => ({
-  products: state.toJS().products
+  products: state.products.toJS()
 }))(ProductsList)

@@ -1,28 +1,23 @@
 {
-  "env": {
-    "browser": true,
-    "node": true
-  },
-
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
   "parser": "babel-eslint",
-  "plugins": [
-    "react"
+  "extends": [
+    "xo",
+    "xo-react"
   ],
   "rules": {
     "indent": [1, 2, {"SwitchCase": 1}],
-    "quotes": [1, "single"],
-    "semi": [2, "never"],
-    "keyword-spacing": [2],
-    "space-infix-ops": [2],
-    "comma-spacing": [2],
-
     "jsx-quotes": [1, "prefer-single"],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1, "maxBOF": 1}],
+    "no-unused-vars": [2, {"args": "none"}],
+    "no-warning-comments": 0,
+    "operator-linebreak": [2, "after", {"overrides": {"?": "before", ":": "before"}}],
+    "semi": [2, "never"],
 
-    "no-console": 0,
+
+    "react/jsx-indent": [2, 2],
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-space-before-closing": [2, "always"],
+    "react/wrap-multilines": 0,
 
     "react/prop-types": 0
   }

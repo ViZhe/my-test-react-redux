@@ -1,7 +1,14 @@
 
-import { fromJS } from 'immutable'
+import {fromJS} from 'immutable'
 
-
+// TODO:
+// new structure of state
+// {
+//   templates: [] // {name:'defaultTemplate', groups[]}
+//   groups: [] // 'testProduct', 'seodata'
+//   fields: [] // {name'', title'', groups[], type'', default'', validate[]}
+// }
+// connecting groups by id
 export const initialState = fromJS({
   defaultTemplate: [
     {

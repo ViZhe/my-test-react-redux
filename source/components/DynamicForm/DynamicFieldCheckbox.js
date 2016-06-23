@@ -1,10 +1,10 @@
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 
 export default class DynamicFieldCheckbox extends Component {
   render() {
-    const { field, option } = this.props
+    const {field, option} = this.props
 
     // TODO: do it better
     // TODO: https://github.com/twisty/formsy-react-components/blob/master/src/checkbox-group.js
@@ -18,15 +18,15 @@ export default class DynamicFieldCheckbox extends Component {
     return <div title={field.name} >
       {field.title}
 
-      {/*If elements > 1 then
+      {/* If elements > 1 then
       <div>Enable all</div>
-      <div>Disable all</div>*/}
+      <div>Disable all</div> */}
 
-      {/*<input type={field.type} {...option} />*/}
+      {/* <input type={field.type} {...option} /> */}
       //DynamicFieldCheckbox//
-      {/*{elements}*/}
+      {/* {elements} */}
       {option.touched && option.error && <div>{option.error}</div>}
-      <br/>
+      <br />
     </div>
   }
 }

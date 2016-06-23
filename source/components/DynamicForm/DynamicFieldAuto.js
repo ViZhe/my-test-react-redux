@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import DynamicFieldDefault from './DynamicFieldDefault'
 import DynamicFieldTextarea from './DynamicFieldTextarea'
@@ -10,7 +10,7 @@ import DynamicFieldSelect from './DynamicFieldSelect'
 
 export default class DynamicFieldAuto extends Component {
   render() {
-    const { field, fields } = this.props
+    const {field, fields} = this.props
     const option = fields[field.name]
 
     option.title = field.title

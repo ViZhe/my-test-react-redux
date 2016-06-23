@@ -1,5 +1,5 @@
 
-import { ADD_AREA } from './constants'
+import {ADD_AREA} from './constants'
 
 export const initialState = {
   list: [

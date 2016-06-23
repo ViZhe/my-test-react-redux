@@ -1,5 +1,5 @@
 
-import { createStore, applyMiddleware } from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 
 import reducers from './reducers'
 
@@ -13,7 +13,6 @@ if (process.env.NODE_ENV === 'development') {
 
   // } else {
   //     middleware.push() // TODO: push something
-
 }
 
 

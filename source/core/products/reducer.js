@@ -1,5 +1,5 @@
 
-import { fromJS } from 'immutable'
+import {fromJS} from 'immutable'
 
 import {
   ADD_PRODUCT,
@@ -20,13 +20,13 @@ export const initialState = fromJS({
 export function productsReducer(state = initialState, action) {
   switch (action.type) {
     case DESTROY_PRODUCT:
-      return state.updateIn(['list'], (list) =>
+      return state.updateIn(['list'], list =>
         list.filter(product => product._id.$oid !== action.payload)
       )
 
     case UPDATE_PRODUCT_FIELD:
-      return state.updateIn(['list'], (list) =>
-        list.map((product) => {
+      return state.updateIn(['list'], list =>
+        list.map(product => {
           if (product._id.$oid === action.payload.id) {
             product[action.payload.field] = action.payload.value
           }
@@ -35,8 +35,8 @@ export function productsReducer(state = initialState, action) {
       )
 
     case UPDATE_PRODUCT:
-      return state.updateIn(['list'], (list) =>
-        list.map((product) => {
+      return state.updateIn(['list'], list =>
+        list.map(product => {
           if (product._id.$oid === action.payload.id) {
             product = action.payload
           }
@@ -45,7 +45,7 @@ export function productsReducer(state = initialState, action) {
       )
 
     case ADD_PRODUCT:
-      return state.updateIn(['list'], (list) =>
+      return state.updateIn(['list'], list =>
         list.concat(action.payload)
       )
 

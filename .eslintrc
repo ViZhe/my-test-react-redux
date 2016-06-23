@@ -1,9 +1,15 @@
 {
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "parser": "babel-eslint",
   "extends": [
     "xo",
+    "xo/esnext",
     "xo-react"
   ],
+  "plugins": ["react"],
   "rules": {
     "indent": [1, 2, {"SwitchCase": 1}],
     "jsx-quotes": [1, "prefer-single"],
@@ -11,6 +17,7 @@
     "no-unused-vars": [2, {"args": "none"}],
     "no-warning-comments": 0,
     "operator-linebreak": [2, "after", {"overrides": {"?": "before", ":": "before"}}],
+    "prefer-template": 0,
     "semi": [2, "never"],
 
 

@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import AddArea from './AddArea'
 import AreaList from './AreaList'

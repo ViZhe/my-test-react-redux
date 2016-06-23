@@ -1,9 +1,9 @@
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import {
-    ProductsList, AddProduct,
-    AreaList, AddArea
+  ProductsList, AddProduct,
+  AreaList, AddArea
 } from '../'
 
 

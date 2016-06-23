@@ -1,13 +1,13 @@
 
-import React, { Component } from 'react'
-import { reduxForm } from 'redux-form'
+import React, {Component} from 'react'
+import {reduxForm} from 'redux-form'
 
 import DynamicFieldAuto from './DynamicFieldAuto'
 
 
 class DynamicForm extends Component {
   render() {
-    const { fields, options, handleSubmit, submitButtonText } = this.props
+    const {fields, options, handleSubmit, submitButtonText} = this.props
 
     const optionGroups = options.map((option, index) =>
       <div key={index} className='dynamic-form__group' >
@@ -17,17 +17,18 @@ class DynamicForm extends Component {
             key={index}
             field={field}
             fields={fields}
-          />
+            />
         )}
       </div>
     )
 
-    let output = !optionGroups
-      ? <div className='c-__empty' >Параметров нет.</div>
-      : <form onSubmit={handleSubmit} >
-        {optionGroups}
-        <button>{submitButtonText ? submitButtonText : 'Отправить'}</button>
-      </form>
+    const form = <form onSubmit={handleSubmit} >
+      {optionGroups}
+      <button>{submitButtonText ? submitButtonText : 'Отправить'}</button>
+    </form>
+    const empty = <div className='c-__empty' >Параметров нет.</div>
+
+    const output = optionGroups ? form : empty
 
     return <div>
       {output}
@@ -37,5 +38,5 @@ class DynamicForm extends Component {
 
 export default reduxForm({
   form: 'dynamicForm',
-  getFormState: (state) => state.form
+  getFormState: state => state.form
 })(DynamicForm)

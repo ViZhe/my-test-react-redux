@@ -1,5 +1,5 @@
 
-import React, { PropTypes } from 'react'
+import React, {PropTypes} from 'react'
 
 // Stateless Functional Components
 const AreaListItem = ({index, people, number}) =>

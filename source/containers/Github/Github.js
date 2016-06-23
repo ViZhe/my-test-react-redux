@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import getGithubInfo from '../../utils/github/helpers'
 
@@ -18,25 +18,19 @@ export default class Github extends Component {
       repos: []
     }
   }
-  componentDidMount(){
-    const username = this.props.params && this.props.params.username || 'vizhe'
+  componentDidMount() {
+    const username = (this.props.params && this.props.params.username) || 'ViZhe'
     this.init(username)
   }
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     this.init(nextProps.params.username)
   }
-
   init(username) {
-    getGithubInfo(username).then(function(data){
-      this.setState({
-        bio: data.bio,
-        repos: data.repos
-      })
-    }.bind(this))
+    getGithubInfo(username, this)
   }
 
   render() {
-    const { bio, repos } = this.state
+    const {bio, repos} = this.state
     return <div>
       <h2>Github</h2>
       <GithubUserProfile bio={bio} />

@@ -1,7 +1,6 @@
 
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 import {
   loadProducts,
@@ -9,33 +8,34 @@ import {
   destroyProduct
 } from '../../core/products/actions'
 import * as mlabHelpers from '../../utils/mlab/helpers'
+import ProductsListItem from './ProductsListItem'
 
-
+// TODO: Сделать в контейнерах такую же папку с таким же файлом и вынести туда логику а тут оставить оформление
 export class ProductsList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: true
+      loading: true // TODO: go to action
     }
   }
   componentDidMount() {
-    mlabHelpers.getProducts().then((response) => {
-      this.props.dispatch(loadProducts(response.data))
+    mlabHelpers.getProducts().then(response => {
+      this.props.loadProducts(response.data)
       this.setState({
         loading: false
       })
     })
   }
   updateProductField(id, field, value) {
-    mlabHelpers.updateProductField(id, field, value).then((response) => {
+    mlabHelpers.updateProductField(id, field, value).then(response => {
       const product = response.data
-      let data = {
+      const data = {
         id: product._id.$oid,
-        field: field,
+        field,
         value: product[field]
       }
 
-      this.props.dispatch(updateProductField(data))
+      this.props.updateProductField(data)
     })
   }
   toggleDeleteProduct(product) {
@@ -45,35 +45,30 @@ export class ProductsList extends Component {
     this.updateProductField(product._id.$oid, 'published', !product.published)
   }
   destroyProduct(id) {
-    mlabHelpers.destroyProduct(id).then((response) => {
-      this.props.dispatch(destroyProduct(response.data._id.$oid))
+    mlabHelpers.destroyProduct(id).then(response => {
+      this.props.destroyProduct(response.data._id.$oid)
     })
   }
   render() {
-    const { products } = this.props
-    const { loading } = this.state
+    const {products} = this.props
+    const {loading} = this.state
 
     let tableStyle = {
       border: '1px solid black'
     }
-    let tdStyle = {
-      border: '1px solid gray'
-    }
 
-    let productList = products.list || []
-    const productsWrap = !productList.length
-      ? <tr><td className='c-area-list__empty'>Товаров нет</td></tr>
-      : productList.map((item, index) =>
-        <tr key={index} >
-          <td style={tdStyle} >{item._id.$oid}</td>
-          <td style={tdStyle} >{item.options.name}</td>
-          <td style={tdStyle} >{item.template}</td>
-          <td style={tdStyle} ><Link to={`/product/${item._id.$oid}/edit`} activeClassName='active'>edit</Link></td>
-          <td style={tdStyle} onClick={() => ::this.toggleDeleteProduct(item)} >{item.deleted ? 'restore' : 'detele'}</td>
-          <td style={tdStyle} onClick={() => ::this.togglePublishProduct(item)} >{item.published ? 'unpublish' : 'publish'}</td>
-          <td style={tdStyle} onClick={() => ::this.destroyProduct(item._id.$oid)} >destroy</td>
-        </tr>
+    const productList = products.list || []
+    const productsWrap = productList.length
+      ? productList.map((item, index) =>
+        <ProductsListItem
+          key={index}
+          item={item}
+          onClickDelete={::this.toggleDeleteProduct}
+          onClickPublish={::this.togglePublishProduct}
+          onClickDestroy={::this.destroyProduct}
+          />
       )
+      : <tr><td className='c-area-list__empty'>Товаров нет</td></tr>
 
     return <div className='c-products-list' >
       <h2>Products List</h2>
@@ -90,13 +85,25 @@ export class ProductsList extends Component {
           </tr>
         </thead>
         <tbody>
-          {loading && 'Данные загружаются' || productsWrap}
+          {(loading && 'Данные загружаются') || productsWrap}
         </tbody>
       </table>
     </div>
   }
 }
 
-export default connect(state => ({
+
+const mapStateToProps = state => ({
   products: state.products.toJS()
-}))(ProductsList)
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadProducts: data => dispatch(loadProducts(data)),
+  updateProductField: data => dispatch(updateProductField(data)),
+  destroyProduct: id => dispatch(destroyProduct(id))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductsList)

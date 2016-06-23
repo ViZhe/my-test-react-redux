@@ -1,21 +1,21 @@
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import DynamicForm from './DynamicForm'
 
-
+// TODO: to change the structure of condition and rewrite under it
 export default class DynamicFormCreator extends Component {
   render() {
-    const { options, onSubmit, submitButtonText } = this.props
+    const {options, onSubmit, submitButtonText} = this.props
 
     const fields = []
     const initialValues = {}
     const validation = {}
-    options.map((option) => {
-      option.fields.map((field) => {
-        let name = field.name
-        let initialValue = field.default
-        let validate = field.validate
+    options.map(option => {
+      option.fields.map(field => {
+        const name = field.name
+        const initialValue = field.default
+        const validate = field.validate
 
         fields.push(name)
 
@@ -29,15 +29,15 @@ export default class DynamicFormCreator extends Component {
       })
     })
 
-    const validate = (values) => {
+    const validate = values => {
       const errors = {}
-      fields.map((field) => {
-        let validField = validation[field]
+      fields.map(field => {
+        const validField = validation[field]
         if (validField) {
-          validField.map((valid) => {
+          validField.map(valid => {
             if (!errors[field]) {
               if (valid && valid.allowedChars) {
-                let regex = new RegExp(valid.allowedChars, 'i')
+                const regex = new RegExp(valid.allowedChars, 'i')
                 if (!regex.test(values[field])) {
                   errors[field] = valid.title
                 }
@@ -62,6 +62,6 @@ export default class DynamicFormCreator extends Component {
       onSubmit={onSubmit}
       submitButtonText={submitButtonText}
       normalize={{title: value => value && value.toUpperCase()}} //  TODO: check it
-    />
+      />
   }
 }

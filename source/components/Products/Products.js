@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import AddProduct from './AddProduct'
 import ProductsList from './ProductsList'

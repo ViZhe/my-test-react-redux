@@ -1,6 +1,6 @@
 
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 import {
   updateProduct,
@@ -18,7 +18,7 @@ export default class EditProduct extends Component {
     }
   }
   componentDidMount() {
-    mlabHelpers.getProduct(this.props.params.id).then((response) => {
+    mlabHelpers.getProduct(this.props.params.id).then(response => {
       this.props.dispatch(loadProduct(response.data))
       this.setState({
         loading: false
@@ -31,22 +31,22 @@ export default class EditProduct extends Component {
       options: data
     }
 
-    mlabHelpers.updateProduct(this.props.params.id, product).then((response) => {
+    mlabHelpers.updateProduct(this.props.params.id, product).then(response => {
       this.props.dispatch(updateProduct(response.data))
     })
   }
   render() {
-    const { loading } = this.state
-    const { product, options } = this.props
+    const {loading} = this.state
+    const {product, options} = this.props
 
     const former = <DynamicFormCreator
       options={options[product.template]}
       onSubmit={::this.updateProduct}
       submitButtonText='Обновить товар'
-    />
+      />
     return <div>
       <h2>Edit Product - {this.props.params.id}</h2>
-      {loading && 'Данные загружаются' || former}
+      {(loading && 'Данные загружаются') || former}
     </div>
   }
 }

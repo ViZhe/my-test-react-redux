@@ -34,15 +34,15 @@ module.exports = {
       // Найти лоадер и разобраться
       // npm install css-loader style-loader stylus-loader stylus --save-dev
       //
-      //{
-      // test: /\.styl$/i,
-      // loader: 'url-loader?limit=10000'
-      //}
+      // {
+      //  test: /\.styl$/i,
+      //  loader: 'url-loader?limit=10000'
+      // }
       // Добавить лоадер и разобраться
-      //{
-      // test: /\.(svg|png|jpg|jpeg)$/,
-      // loader: 'url-loader?limit=10000&name=[path][name]-[hash].[ext]'
-      //}
+      // {
+      //  test: /\.(svg|png|jpg|jpeg)$/,
+      //  loader: 'url-loader?limit=10000&name=[path][name]-[hash].[ext]'
+      // }
     ]
   },
   plugins: [

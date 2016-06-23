@@ -1,7 +1,7 @@
 
-import { ADD_AREA } from './constants'
+import {ADD_AREA} from './constants'
 
-export const addArea = (data) => {
+export const addArea = data => {
   return {
     type: ADD_AREA,
     payload: data

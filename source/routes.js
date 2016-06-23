@@ -1,8 +1,8 @@
 
 import React from 'react'
-import { Route, IndexRoute, Redirect } from 'react-router'
+import {Route, IndexRoute, Redirect} from 'react-router'
 
-import { App, Github } from './containers'
+import {App, Github} from './containers'
 import {
   Home,
   Products,

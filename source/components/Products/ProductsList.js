@@ -6,8 +6,8 @@ import {
   loadProducts,
   updateProductField,
   destroyProduct
-} from '../../core/products/actions'
-import * as mlabHelpers from '../../utils/mlab/helpers'
+} from '~/core/products/actions'
+import * as mlabHelpers from '~/utils/mlab/helpers'
 import ProductsListItem from './ProductsListItem'
 
 // TODO: Сделать в контейнерах такую же папку с таким же файлом и вынести туда логику а тут оставить оформление

@@ -5,8 +5,8 @@ import {connect} from 'react-redux'
 import {
   updateProduct,
   loadProduct
-} from '../../core/products/actions'
-import * as mlabHelpers from '../../utils/mlab/helpers'
+} from '~/core/products/actions'
+import * as mlabHelpers from '~/utils/mlab/helpers'
 import DynamicFormCreator from '../DynamicForm/DynamicFormCreator'
 
 

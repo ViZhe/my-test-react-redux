@@ -4,8 +4,8 @@ import {connect} from 'react-redux'
 import {reset} from 'redux-form'
 
 import DynamicFormCreator from '../DynamicForm/DynamicFormCreator'
-import {addProduct} from '../../core/products/actions'
-import * as mlabHelpers from '../../utils/mlab/helpers'
+import {addProduct} from '~/core/products/actions'
+import * as mlabHelpers from '~/utils/mlab/helpers'
 
 
 export class AddProduct extends Component {

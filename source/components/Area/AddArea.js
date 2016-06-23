@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import {reduxForm, reset} from 'redux-form'
 
-import {addArea} from '../../core/area/actions'
+import {addArea} from '~/core/area/actions'
 
 
 const validate = values => {

@@ -5,6 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = {
+  resolve: {
+    alias: {
+      '~': path.resolve(process.cwd(), 'source')
+    },
+    extensions: ['', '.js', '.jsx']
+  },
   entry: [
     'babel-polyfill',
     './source/index'

@@ -1,12 +1,12 @@
 
 import React, {Component} from 'react'
 
-import getGithubInfo from '../../utils/github/helpers'
+import getGithubInfo from '~/utils/github/helpers'
 
 import {
   GithubUserProfile,
   GithubReposList
-} from '../../components'
+} from '~/components'
 
 
 export default class Github extends Component {

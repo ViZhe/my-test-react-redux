@@ -2,9 +2,10 @@
 import React, {Component} from 'react'
 
 import {
-  ProductsList, AddProduct,
+  AddProduct,
   AreaList, AddArea
 } from '../'
+import ProductsList from '~/containers/Products/ProductsList'
 
 
 export default class Home extends Component {

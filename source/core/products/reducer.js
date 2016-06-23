@@ -14,6 +14,7 @@ import {
 export const initialState = fromJS({
   // categories: {} // for foture: this catalog
   list: [],
+  isLoading: true,
   editable: {}
 })
 
@@ -50,9 +51,10 @@ export function productsReducer(state = initialState, action) {
       )
 
     case LOAD_PRODUCTS:
-      return state.updateIn(['list'], () =>
-        action.payload
-      )
+      return state.withMutations(products => {
+        products.set('list', action.payload)
+          .set('isLoading', false)
+      })
 
     case LOAD_PRODUCT:
       return state.updateIn(['editable'], () =>

@@ -1,4 +1,6 @@
 
+/* eslint array-callback-return: "off" */
+
 import React, {Component} from 'react'
 
 import DynamicForm from './DynamicForm'

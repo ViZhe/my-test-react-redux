@@ -1,7 +1,6 @@
 
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = {
@@ -11,15 +10,27 @@ module.exports = {
     },
     extensions: ['', '.js', '.jsx']
   },
-  entry: [
-    'babel-polyfill',
-    './source/index'
-  ],
+  entry: {
+    main: [
+      'babel-polyfill',
+      './source/index'
+    ],
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'redux',
+      'redux-form',
+      'immutable',
+      'axios'
+    ]
+  },
   output: {
     path: path.resolve(process.cwd(), 'dist'),
     publicPath: '/',
-    filename: 'hoppas-[hash].js',
-    chunkFilename: '[id].[hash].chunk.js' // TODO: test it
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js' // TODO: test it
   },
   module: {
     preLoaders: [
@@ -53,23 +64,6 @@ module.exports = {
   },
   plugins: [
     // new webpack.optimize.CommonsChunkPlugin('common.js'),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'source/index.html',
-      inject: true,
-      minify: { // TODO: enable it leter
-        // removeComments: true,
-        // collapseWhitespace: true,
-        // removeRedundantAttributes: true,
-        // useShortDoctype: true,
-        // removeEmptyAttributes: true,
-        // removeStyleLinkTypeAttributes: true,
-        // keepClosingSlash: true,
-        // minifyJS: true,
-        // minifyCSS: true,
-        // minifyURLs: true
-      }
-      // hash: true
-    })
+    new webpack.optimize.OccurenceOrderPlugin()
   ]
 }

@@ -9,7 +9,9 @@
 - [X] Routing
 - [X] mLab
 - [X] Immutable
-- [ ] add express server && del webpack-dev-server
+- [X] Add express server && del webpack-dev-server
+- [ ] del index.html
+- [ ] Add webpack config for build server scripts
 - [ ] Styles
     - [ ] Stylus || PostCSS + SugarSS
     - [ ] autoprefixer

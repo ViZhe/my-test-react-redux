@@ -5,7 +5,12 @@ const webpackConfig = require('./webpack.config.common')
 
 webpackConfig.devtool = 'cheap-module-eval-source-map'
 
+webpackConfig.entry.main.push(
+  'webpack-hot-middleware/client?reload=true'
+)
+
 webpackConfig.plugins.push(
+  new webpack.HotModuleReplacementPlugin(),
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify('development')
@@ -13,9 +18,5 @@ webpackConfig.plugins.push(
   })
 )
 
-webpackConfig.devServer = {
-  stats: 'errors-only',
-  port: 8000
-}
 
 module.exports = webpackConfig

@@ -34,7 +34,7 @@ const ProductsList = ({products}) => {
         </tr>
       </thead>
       <tbody>
-        {(products.isLoading && 'Данные загружаются') || productsWrap}
+        {products.isLoading ? 'Данные загружаются' : productsWrap}
       </tbody>
     </table>
   </div>

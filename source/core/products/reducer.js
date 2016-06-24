@@ -46,20 +46,20 @@ export function productsReducer(state = initialState, action) {
       )
 
     case ADD_PRODUCT:
-      return state.updateIn(['list'], list =>
-        list.concat(action.payload)
+      return state.withMutations(state =>
+        state.update('list', list =>
+          list.concat(action.payload)
+        )
       )
 
     case LOAD_PRODUCTS:
-      return state.withMutations(products => {
-        products.set('list', action.payload)
-          .set('isLoading', false)
+      return state.withMutations(state => {
+        state.set('list', action.payload)
+        state.set('isLoading', false)
       })
 
     case LOAD_PRODUCT:
-      return state.updateIn(['editable'], () =>
-        action.payload
-      )
+      return state.set('editable', action.payload)
 
     default:
       return state

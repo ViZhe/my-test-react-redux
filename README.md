@@ -10,7 +10,7 @@
 - [X] mLab
 - [X] Immutable
 - [X] Add express server && del webpack-dev-server
-- [ ] del index.html
+- [X] del index.html
 - [ ] Add webpack config for build server scripts
 - [ ] Styles
     - [ ] Stylus || PostCSS + SugarSS

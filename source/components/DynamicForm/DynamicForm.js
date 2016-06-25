@@ -1,40 +1,44 @@
 
-import React, {Component} from 'react'
+import React from 'react'
+// import React, {PropTypes} from 'react'
 import {reduxForm} from 'redux-form'
 
 import DynamicFieldAuto from './DynamicFieldAuto'
 
 
-class DynamicForm extends Component {
-  render() {
-    const {fields, options, handleSubmit, submitButtonText} = this.props
-
-    const optionGroups = options.map((option, index) =>
-      <div key={index} className='dynamic-form__group' >
-        <div className='dynamic-form__group-header' >{option.title} - ({option.fields.length})</div>
-        {option.fields.map((field, index) =>
-          <DynamicFieldAuto
-            key={index}
-            field={field}
-            fields={fields}
-            />
-        )}
+const DynamicForm = ({fields, groupsList, fieldsList, handleSubmit, submitButtonText}) => {
+  const optionGroups = groupsList
+    .filter(group => groupsList.indexOf(group) >= 0)
+    .map((group, index) =>
+      <div key={index} className='b-dynamic-form__group' >
+        <div className='b-dynamic-form__header' >{group.title} - ({group.fields.length})</div>
+        {fieldsList
+          .filter(field =>
+            fields[field.name] && group.fields.indexOf(field._id) >= 0
+          )
+          .map((field, index) =>
+            <DynamicFieldAuto
+              key={index}
+              field={field}
+              option={fields[field.name]}
+              />
+          )}
       </div>
     )
 
-    const form = <form onSubmit={handleSubmit} >
-      {optionGroups}
-      <button>{submitButtonText ? submitButtonText : 'Отправить'}</button>
-    </form>
-    const empty = <div className='c-__empty' >Параметров нет.</div>
+  const empty = <div className='b-dynamic-form__empty' >Параметров нет.</div>
+  const form = <form onSubmit={handleSubmit} className='b-dynamic-form'>
+    {optionGroups}
+    <button>{submitButtonText || 'Отправить'}</button>
+  </form>
 
-    const output = optionGroups ? form : empty
-
-    return <div>
-      {output}
-    </div>
-  }
+  return optionGroups ? form : empty
 }
+
+// TODO: do it
+// DynamicForm.propTypes = {
+//   field: PropTypes.object.isRequired
+// }
 
 export default reduxForm({
   form: 'dynamicForm',

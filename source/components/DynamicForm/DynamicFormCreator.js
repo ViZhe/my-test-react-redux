@@ -1,55 +1,64 @@
 
-/* eslint array-callback-return: "off" */
-
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import _ from 'underscore'
 
 import DynamicForm from './DynamicForm'
 
-// TODO: to change the structure of condition and rewrite under it
-export default class DynamicFormCreator extends Component {
+
+class DynamicFormCreator extends Component {
   render() {
-    const {options, onSubmit, submitButtonText} = this.props
+    const {options, template, onSubmit, submitButtonText} = this.props
 
     const fields = []
     const initialValues = {}
-    const validation = {}
-    options.map(option => {
-      option.fields.map(field => {
-        const name = field.name
-        const initialValue = field.default
-        const validate = field.validate
+    const validateList = {}
 
-        fields.push(name)
+    const currentTemplate = options.templates.filter(tpl =>
+      tpl.name === template
+    )[0]
+    const currentGroups = options.groups.filter(group =>
+      currentTemplate.groups.indexOf(group._id) >= 0
+    )
 
-        if (initialValue !== '' && typeof initialValue !== 'undefined') {
-          initialValues[name] = initialValue
-        }
+    currentGroups.map(group =>
+      options.fields.filter(field => group.fields.indexOf(field._id) >= 0)
+        .map(field => {
+          const fieldName = field.name
+          const fieldDefault = field.default
+          const fieldValidate = field.validate
 
-        if (validate !== '' && typeof validate !== 'undefined') {
-          validation[name] = validate
-        }
-      })
-    })
+          fields.push(fieldName)
+
+          if (fieldDefault !== '' && typeof fieldDefault !== 'undefined') {
+            initialValues[fieldName] = fieldDefault
+          }
+
+          if (fieldValidate !== '' && typeof fieldValidate !== 'undefined') {
+            validateList[fieldName] = fieldValidate
+          }
+          return ''
+        })
+    )
 
     const validate = values => {
       const errors = {}
-      fields.map(field => {
-        const validField = validation[field]
-        if (validField) {
-          validField.map(valid => {
-            if (!errors[field]) {
-              if (valid && valid.allowedChars) {
-                const regex = new RegExp(valid.allowedChars, 'i')
-                if (!regex.test(values[field])) {
-                  errors[field] = valid.title
-                }
-              }
 
-              if (valid.required && !values[field]) {
-                errors[field] = valid.title
+      _.map(validateList, (validations, fieldName) => {
+        if (!errors[fieldName] && validations) {
+          _.map(validations, (val, key) => {
+            // allowedChars
+            if (val && val.allowedChars) {
+              const regex = new RegExp(val.allowedChars, 'i')
+              if (!regex.test(values[fieldName])) {
+                errors[fieldName] = val.title
               }
-              //  TODO: add more validators
             }
+            // required
+            if (val.required && !values[fieldName]) {
+              errors[fieldName] = val.title
+            }
+            // TODO: add more validators
           })
         }
       })
@@ -57,13 +66,19 @@ export default class DynamicFormCreator extends Component {
     }
 
     return <DynamicForm
-      options={options}
+      groupsList={currentGroups}
+      fieldsList={options.fields}
       fields={fields}
       initialValues={initialValues}
       validate={validate}
       onSubmit={onSubmit}
       submitButtonText={submitButtonText}
-      normalize={{title: value => value && value.toUpperCase()}} //  TODO: check it
+      // normalize={{title: value => value && value.toUpperCase()}} //  TODO: check it
       />
   }
 }
+
+
+export default connect(state => ({
+  options: state.options.toJS()
+}))(DynamicFormCreator)

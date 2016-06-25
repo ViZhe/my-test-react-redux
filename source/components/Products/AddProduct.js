@@ -27,12 +27,13 @@ export class AddProduct extends Component {
   }
   render() {
     const {options} = this.props
+    const templ = 'defaultTemplate'
 
     return <div className='c-area-list'>
       <h2>Add Product</h2>
-      <p>Групп параметров: {options.length}</p>
+      <p>Групп параметров: {options.templates.filter(tpl => tpl.name === templ)[0].groups.length}</p>
       <DynamicFormCreator
-        options={options.defaultTemplate}
+        template='defaultTemplate'
         onSubmit={::this.addProduct}
         submitButtonText='Создать товар'
         />

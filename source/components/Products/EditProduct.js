@@ -37,10 +37,10 @@ export default class EditProduct extends Component {
   }
   render() {
     const {loading} = this.state
-    const {product, options} = this.props
+    const {product} = this.props
 
     const former = <DynamicFormCreator
-      options={options[product.template]}
+      template={product.template || 'defaultTemplate'}
       onSubmit={::this.updateProduct}
       submitButtonText='Обновить товар'
       />
@@ -52,6 +52,5 @@ export default class EditProduct extends Component {
 }
 
 export default connect(state => ({
-  product: state.products.toJS().editable,
-  options: state.options.toJS()
+  product: state.products.toJS().editable
 }))(EditProduct)

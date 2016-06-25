@@ -1,16 +1,20 @@
 
-import React, {Component} from 'react'
+import React, {PropTypes} from 'react'
 
 
-export default class DynamicFieldTextarea extends Component {
-  render() {
-    const {field, option} = this.props
-
-    return <label title={field.name} >
-      {field.title}
-      <textarea {...option} ></textarea>
-      {option.touched && option.error && <div>{option.error}</div>}
-      <br />
-    </label>
-  }
+const DynamicFieldTextarea = ({field, option}) => {
+  return <label title={field.name} >
+    {field.title}
+    <textarea {...option} ></textarea>
+    {option.touched && option.error && <div>{option.error}</div>}
+    <br />
+  </label>
 }
+
+
+DynamicFieldTextarea.propTypes = {
+  field: PropTypes.object.isRequired,
+  option: PropTypes.object.isRequired // TODO: details it with PropTypes.shape
+}
+
+export default DynamicFieldTextarea

@@ -11,7 +11,7 @@ const getUserInfo = username =>
   axios.get(`https://api.github.com/users/${username}?client_id=${GITHUB_CONFIG.clientId}&client_secret=${GITHUB_CONFIG.clientSecret}`)
 
 
-const getGithubInfo = (username, ctx) => {
+const getGithubInfo = (username = 'ViZhe', ctx) => {
   axios.all([getRepos(username), getUserInfo(username)]).then(arr => (
     ctx.setState({
       repos: arr[0].data,

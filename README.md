@@ -18,8 +18,10 @@
     - [ ] cssnano
     - [ ] linter
 - [ ] SSR
+- [ ] add React Helmet
 - [ ] add propTypes in components
 - [ ] cover tests
 - [ ] logs
 - [ ] express.js + mongoose
+- [ ] Add [Normalizr](https://github.com/paularmstrong/normalizr)
 - [ ] ???

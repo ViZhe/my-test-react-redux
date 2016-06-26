@@ -2,11 +2,12 @@
 const webpack = require('webpack')
 const AssetsWebpackPlugin = require('assets-webpack-plugin')
 
-const webpackConfig = require('./webpack.config.common')
+const webpackConfig = require('./webpack.config.client.common')
 
 
 // webpackConfig.devtool = 'source-map' // TODO: think: it need?
 webpackConfig.output.filename = '[name]-[hash].js'
+webpackConfig.output.chunkFilename = '[name]-[hash].chunk.js' // TODO: test it. Or [chunkhash] ?
 
 webpackConfig.plugins.push(
   new webpack.optimize.CommonsChunkPlugin('vendor', '[name]-[hash].js'),

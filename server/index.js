@@ -4,7 +4,7 @@ import Express from 'express'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import config from '../webpack/webpack.config.development'
+import config from '../webpack/webpack.config.client.development'
 
 
 const server = new Express()
@@ -15,17 +15,7 @@ const __PROD__ = process.env.NODE_ENV === 'production'
 const assets = __PROD__ ? require('../assets.json') : ''
 
 const compiler = webpack(config)
-const middleware = webpackDevMiddleware(compiler, {
-  stats: {
-    version: false,
-    hash: false,
-    timings: true,
-    colors: true,
-    chunk: false,
-    chunkModules: false
-  }
-})
-server.use(middleware)
+server.use(webpackDevMiddleware(compiler))
 server.use(webpackHotMiddleware(compiler))
 
 

@@ -1,6 +1,6 @@
 
 const webpack = require('webpack')
-const webpackConfig = require('./webpack.config.common')
+const webpackConfig = require('./webpack.config.client.common')
 
 
 webpackConfig.devtool = 'cheap-module-eval-source-map'

@@ -65,5 +65,13 @@ module.exports = {
   plugins: [
     // new webpack.optimize.CommonsChunkPlugin('common.js'),
     new webpack.optimize.OccurenceOrderPlugin()
-  ]
+  ],
+  stats: {
+    version: false,
+    hash: false,
+    timings: true,
+    colors: true,
+    chunk: false,
+    chunkModules: false
+  }
 }

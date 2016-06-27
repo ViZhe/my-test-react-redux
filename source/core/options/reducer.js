@@ -49,17 +49,11 @@ export const initialState = fromJS({
       default: '',
       validate: [
         {
-          // TODO: redo
-          // type: 'required',
-          // title: 'Обязательно заполните Артикул'
-          required: true,
+          type: 'required',
           title: 'Обязательно заполните Артикул'
         },
         {
-          // TODO: redo
-          // type: 'regex',
-          // regex: '^[0-9]*?$',
-          // title: 'Допускаются только цифры'
+          type: 'regex',
           regex: '^[0-9]*?$',
           title: 'Допускаются только цифры'
         }
@@ -73,17 +67,11 @@ export const initialState = fromJS({
       default: '',
       validate: [
         {
-          // TODO: redo
-          // type: 'required',
-          // title: 'Обязательно заполните Название'
-          required: true,
+          type: 'required',
           title: 'Обязательно заполните Название'
         },
         {
-          // TODO: redo
-          // type: 'regex',
-          // regex: '^[а-яА-ЯёЁa-zA-Z]+$',
-          // title: 'Допускаются только буквы'
+          type: 'regex',
           regex: '^[а-яА-ЯёЁa-zA-Z]+$',
           title: 'Допускаются только буквы'
         }

@@ -1,7 +1,6 @@
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import _ from 'underscore'
 
 import DynamicForm from './DynamicForm'
 
@@ -43,24 +42,32 @@ class DynamicFormCreator extends Component {
     const validate = values => {
       const errors = {}
 
-      _.each(validateList, (validations, fieldName) => {
-        if (!errors[fieldName] && validations) {
-          _.each(validations, (val, key) => {
-            // regex
-            if (val && val.regex) {
-              const regex = new RegExp(val.regex, 'i')
+      for (const fieldName in validateList) {
+        if ({}.hasOwnProperty.call(validateList, fieldName)) {
+          const validations = validateList[fieldName]
+
+          validations.forEach(valid => {
+            if (errors[fieldName]) {
+              return
+            }
+            const type = valid.type
+
+            if (type === 'regex') {
+              const regex = new RegExp(valid.regex, 'i')
               if (!regex.test(values[fieldName])) {
-                errors[fieldName] = val.title
+                errors[fieldName] = valid.title
+              }
+            } else if (type === 'required') {
+              if (!values[fieldName]) {
+                errors[fieldName] = valid.title
               }
             }
-            // required
-            if (val.required && !values[fieldName]) {
-              errors[fieldName] = val.title
-            }
+
             // TODO: add more validators
           })
         }
-      })
+      }
+
       return errors
     }
 

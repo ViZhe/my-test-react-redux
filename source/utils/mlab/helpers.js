@@ -4,6 +4,19 @@ import axios from 'axios'
 import {MLAB_CONFIG} from './config'
 
 
+export const getOptionsTemplates = () =>
+  axios.get(`${MLAB_CONFIG.url}/${MLAB_CONFIG.collections.options.templates}?${MLAB_CONFIG.apiKey}`)
+
+export const getOptionsGroups = () =>
+  axios.get(`${MLAB_CONFIG.url}/${MLAB_CONFIG.collections.options.groups}?${MLAB_CONFIG.apiKey}`)
+
+export const getOptionsFields = () =>
+  axios.get(`${MLAB_CONFIG.url}/${MLAB_CONFIG.collections.options.fields}?${MLAB_CONFIG.apiKey}`)
+
+export const getOptions = () =>
+  axios.all([getOptionsTemplates(), getOptionsGroups(), getOptionsFields()])
+
+
 export const getProducts = () =>
   axios.get(`${MLAB_CONFIG.url}/${MLAB_CONFIG.collections.products}?${MLAB_CONFIG.apiKey}`)
 

@@ -16,7 +16,7 @@ const ProductsListItem = ({item, toggleDeleteHandler, toggleActiveHandler, destr
     <td style={tdStyle} >{item.template}</td>
     <td style={tdStyle} ><Link to={`/product/${_id}/edit`} >edit</Link></td>
     <td style={tdStyle} ><button onClick={toggleDeleteHandler} >{item.isDeleted ? 'restore' : 'detele'}</button></td>
-    <td style={tdStyle} ><button onClick={toggleActiveHandler} >{item.isActivated ? 'unpublish' : 'publish'}</button></td>
+    <td style={tdStyle} ><button onClick={toggleActiveHandler} >{item.isActivated ? 'deactivate' : 'activate'}</button></td>
     <td style={tdStyle} ><button onClick={destroyHandler} >destroy</button></td>
   </tr>
 }

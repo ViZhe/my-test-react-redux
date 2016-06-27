@@ -13,8 +13,23 @@ import {
 
 export const initialState = fromJS({
   // categories: {} // for foture: this catalog
-  list: [
-    // TODO: Описать
+  data: [
+    // {
+    //   template: String,
+    //   isActivated: Boolean,
+    //   isDeleted: Boolen,
+    //   createdAt: timestamp,
+    //   updateAt: timestamp,
+    //   images: [
+    //     {
+    //       name: '',
+    //       i300x300: '' // TODO: think
+    //     }
+    //   ],
+    //   options: {
+    //     name: 'value'
+    //   }
+    // }
   ],
   isLoading: true,
   editable: {}
@@ -23,12 +38,12 @@ export const initialState = fromJS({
 export function productsReducer(state = initialState, action) {
   switch (action.type) {
     case DESTROY_PRODUCT:
-      return state.updateIn(['list'], list =>
+      return state.updateIn(['data'], list =>
         list.filter(product => product._id.$oid !== action.payload)
       )
 
     case UPDATE_PRODUCT_FIELD:
-      return state.updateIn(['list'], list =>
+      return state.updateIn(['data'], list =>
         list.map(product => {
           if (product._id.$oid === action.payload.id) {
             product[action.payload.field] = action.payload.value
@@ -38,7 +53,7 @@ export function productsReducer(state = initialState, action) {
       )
 
     case UPDATE_PRODUCT:
-      return state.updateIn(['list'], list =>
+      return state.updateIn(['data'], list =>
         list.map(product => {
           if (product._id.$oid === action.payload.id) {
             product = action.payload
@@ -49,14 +64,14 @@ export function productsReducer(state = initialState, action) {
 
     case ADD_PRODUCT:
       return state.withMutations(state =>
-        state.update('list', list =>
+        state.update('data', list =>
           list.concat(action.payload)
         )
       )
 
     case LOAD_PRODUCTS:
       return state.withMutations(state => {
-        state.set('list', action.payload)
+        state.set('data', action.payload)
         state.set('isLoading', false)
       })
 

@@ -6,20 +6,12 @@
 
 
 ## TODO
-- [X] Routing
-- [X] mLab
-- [X] Immutable
-- [X] Add express server && del webpack-dev-server
-- [X] del index.html
-- [X] Add webpack config for build server scripts
-- [X] deleted & published to isDeleted & isActivated
-- [X] createdOn & updatedOn to createdAt & updatedAt
 - [ ] Update options
   - [ ] load from mlab
   - [ ] templates pages
     - [ ] add
     - [ ] list
-    - [ ] edit    
+    - [ ] edit
   - [ ] groups pages
     - [ ] add
     - [ ] list
@@ -41,3 +33,13 @@
 - [ ] express.js + mongoose
 - [ ] Add [Normalizr](https://github.com/paularmstrong/normalizr)
 - [ ] ???
+
+## Done
+- [X] Routing
+- [X] mLab
+- [X] Immutable
+- [X] Add express server && del webpack-dev-server
+- [X] del index.html
+- [X] Add webpack config for build server scripts
+- [X] deleted & published to isDeleted & isActivated
+- [X] createdOn & updatedOn to createdAt & updatedAt

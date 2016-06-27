@@ -9,9 +9,9 @@ const ProductsList = ({products}) => {
     border: '1px solid black'
   }
 
-  const productList = products.list || []
-  const productsWrap = productList.length
-    ? productList.map((item, index) =>
+  const productsList = products.data || []
+  const productsWrap = productsList.length
+    ? productsList.map((item, index) =>
       <ProductsListItem
         key={index}
         item={item}

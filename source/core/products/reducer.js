@@ -13,7 +13,9 @@ import {
 
 export const initialState = fromJS({
   // categories: {} // for foture: this catalog
-  list: [],
+  list: [
+    // TODO: Описать
+  ],
   isLoading: true,
   editable: {}
 })

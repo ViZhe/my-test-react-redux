@@ -21,9 +21,9 @@ class DynamicFormCreator extends Component {
       currentTemplate.groups.indexOf(group._id) >= 0
     )
 
-    currentGroups.map(group =>
+    currentGroups.forEach(group =>
       options.fields.filter(field => group.fields.indexOf(field._id) >= 0)
-        .map(field => {
+        .forEach(field => {
           const fieldName = field.name
           const fieldDefault = field.default
           const fieldValidate = field.validate
@@ -37,19 +37,18 @@ class DynamicFormCreator extends Component {
           if (fieldValidate !== '' && typeof fieldValidate !== 'undefined') {
             validateList[fieldName] = fieldValidate
           }
-          return ''
         })
     )
 
     const validate = values => {
       const errors = {}
 
-      _.map(validateList, (validations, fieldName) => {
+      _.each(validateList, (validations, fieldName) => {
         if (!errors[fieldName] && validations) {
-          _.map(validations, (val, key) => {
-            // allowedChars
-            if (val && val.allowedChars) {
-              const regex = new RegExp(val.allowedChars, 'i')
+          _.each(validations, (val, key) => {
+            // regex
+            if (val && val.regex) {
+              const regex = new RegExp(val.regex, 'i')
               if (!regex.test(values[fieldName])) {
                 errors[fieldName] = val.title
               }

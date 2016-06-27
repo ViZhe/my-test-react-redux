@@ -14,10 +14,10 @@ const ProductsListItem = ({item, toggleDeleteHandler, togglePublishHandler, dest
     <td style={tdStyle} >{_id}</td>
     <td style={tdStyle} >{item.options.name}</td>
     <td style={tdStyle} >{item.template}</td>
-    <td style={tdStyle} ><Link to={`/product/${_id}/edit`} activeClassName='active'>edit</Link></td>
-    <td style={tdStyle} onClick={toggleDeleteHandler} >{item.deleted ? 'restore' : 'detele'}</td>
-    <td style={tdStyle} onClick={togglePublishHandler} >{item.published ? 'unpublish' : 'publish'}</td>
-    <td style={tdStyle} onClick={destroyHandler} >destroy</td>
+    <td style={tdStyle} ><Link to={`/product/${_id}/edit`} >edit</Link></td>
+    <td style={tdStyle} ><button onClick={toggleDeleteHandler} >{item.deleted ? 'restore' : 'detele'}</button></td>
+    <td style={tdStyle} ><button onClick={togglePublishHandler} >{item.published ? 'unpublish' : 'publish'}</button></td>
+    <td style={tdStyle} ><button onClick={destroyHandler} >destroy</button></td>
   </tr>
 }
 

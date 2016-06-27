@@ -8,8 +8,8 @@
     "start:dev": "nodemon --exec babel-node ./server/ --watch ./server/",
     "start:prod": "nodemon ./dist/server",
     "build": "npm run clean && npm run build:client && npm run build:server",
-    "build:client": "NODE_ENV=production webpack --config webpack/webpack.config.client.production.js --progress --color",
-    "build:server": "NODE_ENV=production webpack --config webpack/webpack.config.server.production.js --progress --color",
+    "build:client": "NODE_ENV=production webpack --config webpack/webpack.config.client.production.js",
+    "build:server": "NODE_ENV=production webpack --config webpack/webpack.config.server.production.js",
     "clean": "rm -rf dist"
   },
   "author": "ViZhe",

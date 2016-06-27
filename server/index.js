@@ -15,7 +15,16 @@ const __PROD__ = process.env.NODE_ENV === 'production'
 const assets = __PROD__ ? require('../assets.json') : ''
 
 const compiler = webpack(config)
-server.use(webpackDevMiddleware(compiler))
+server.use(webpackDevMiddleware(compiler, {
+  stats: {
+    version: false,
+    hash: false,
+    timings: true,
+    colors: true,
+    chunk: false,
+    chunkModules: false
+  }
+}))
 server.use(webpackHotMiddleware(compiler))
 
 

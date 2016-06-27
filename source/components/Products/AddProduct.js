@@ -13,10 +13,9 @@ export class AddProduct extends Component {
     const {dispatch} = this.props
 
     const product = {
-      id: 100,
-      deleted: false,
-      published: false,
-      createdOn: Math.floor(Date.now() / 1000), // get timestamp
+      isDeleted: false,
+      isActivated: false,
+      createdAt: Math.floor(Date.now() / 1000), // get timestamp
       options: data
     }
 

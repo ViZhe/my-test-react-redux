@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react'
 import {Link} from 'react-router'
 
 
-const ProductsListItem = ({item, toggleDeleteHandler, togglePublishHandler, destroyHandler}) => {
+const ProductsListItem = ({item, toggleDeleteHandler, toggleActiveHandler, destroyHandler}) => {
   let tdStyle = {
     border: '1px solid gray'
   }
@@ -15,8 +15,8 @@ const ProductsListItem = ({item, toggleDeleteHandler, togglePublishHandler, dest
     <td style={tdStyle} >{item.options.name}</td>
     <td style={tdStyle} >{item.template}</td>
     <td style={tdStyle} ><Link to={`/product/${_id}/edit`} >edit</Link></td>
-    <td style={tdStyle} ><button onClick={toggleDeleteHandler} >{item.deleted ? 'restore' : 'detele'}</button></td>
-    <td style={tdStyle} ><button onClick={togglePublishHandler} >{item.published ? 'unpublish' : 'publish'}</button></td>
+    <td style={tdStyle} ><button onClick={toggleDeleteHandler} >{item.isDeleted ? 'restore' : 'detele'}</button></td>
+    <td style={tdStyle} ><button onClick={toggleActiveHandler} >{item.isActivated ? 'unpublish' : 'publish'}</button></td>
     <td style={tdStyle} ><button onClick={destroyHandler} >destroy</button></td>
   </tr>
 }
@@ -25,7 +25,7 @@ const ProductsListItem = ({item, toggleDeleteHandler, togglePublishHandler, dest
 ProductsListItem.propTypes = {
   item: PropTypes.object.isRequired, // TODO: details it with PropTypes.shape
   toggleDeleteHandler: PropTypes.func.isRequired,
-  togglePublishHandler: PropTypes.func.isRequired,
+  toggleActiveHandler: PropTypes.func.isRequired,
   destroyHandler: PropTypes.func.isRequired
 }
 

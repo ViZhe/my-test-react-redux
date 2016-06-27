@@ -25,11 +25,11 @@ class ProductsListItemContainer extends Component {
   }
   toggleDeleteProduct() {
     const item = this.props.item
-    this.updateProductField(item._id.$oid, 'deleted', !item.deleted)
+    this.updateProductField(item._id.$oid, 'isDeleted', !item.isDeleted)
   }
-  togglePublishProduct() {
+  toggleActiveProduct() {
     const item = this.props.item
-    this.updateProductField(item._id.$oid, 'published', !item.published)
+    this.updateProductField(item._id.$oid, 'isActivated', !item.isActivated)
   }
   destroyProduct() {
     const itemId = this.props.item._id.$oid
@@ -40,7 +40,7 @@ class ProductsListItemContainer extends Component {
   render() {
     return <ProductsListItem
       toggleDeleteHandler={::this.toggleDeleteProduct}
-      togglePublishHandler={::this.togglePublishProduct}
+      toggleActiveHandler={::this.toggleActiveProduct}
       destroyHandler={::this.destroyProduct}
       {...this.props}
       />

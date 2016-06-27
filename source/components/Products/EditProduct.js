@@ -27,7 +27,7 @@ export default class EditProduct extends Component {
   }
   updateProduct(data) {
     const product = {
-      updatedOn: Math.floor(Date.now() / 1000), // get timestamp
+      updatedAt: Math.floor(Date.now() / 1000), // get timestamp
       options: data
     }
 

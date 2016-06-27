@@ -28,8 +28,8 @@ const ProductsList = ({products}) => {
           <th>o.name</th>
           <th>template</th>
           <th>edit</th>
-          <th>deleted</th>
-          <th>published</th>
+          <th>isDeleted</th>
+          <th>isActivated</th>
           <th>destroy</th>
         </tr>
       </thead>

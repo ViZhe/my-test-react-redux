@@ -12,8 +12,8 @@
 - [X] Add express server && del webpack-dev-server
 - [X] del index.html
 - [X] Add webpack config for build server scripts
-- [ ] deleted & published to isDeleted & isPublished
-- [ ] createdOn & updatedOn to createdAt & updatedAt
+- [X] deleted & published to isDeleted & isActivated
+- [X] createdOn & updatedOn to createdAt & updatedAt
 - [ ] Update options
   - [ ] load from mlab
   - [ ] templates pages

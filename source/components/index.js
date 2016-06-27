@@ -10,6 +10,5 @@ export AddArea from './Area/AddArea'
 export Area from './Area/Area'
 export AreaList from './Area/AreaList'
 
-// TODO: folder Github
-export GithubUserProfile from './GithubUserProfile/GithubUserProfile'
-export GithubReposList from './GithubReposList/GithubReposList'
+export GithubUserProfile from './Github/GithubUserProfile'
+export GithubReposList from './Github/GithubReposList'

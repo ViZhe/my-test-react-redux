@@ -2,7 +2,12 @@
 import React from 'react'
 import {Route, IndexRoute, Redirect} from 'react-router'
 
-import {App, Github} from './containers'
+import {
+  App,
+  Options,
+  OptionsFieldsList,
+  Github
+} from './containers'
 import {
   Home,
   Products,
@@ -16,6 +21,11 @@ export const routes = (
   <div>
     <Route path='/' component={App} >
       <IndexRoute component={Home} />
+
+      <Route path='options' component={Options} >
+        <IndexRoute component={OptionsFieldsList} /> {/* TODO: optionsIndex */}
+        <Route path='fields' component={OptionsFieldsList} />
+      </Route>
 
       <Route path='products' component={Products} />
       <Redirect from='product' to='products' />

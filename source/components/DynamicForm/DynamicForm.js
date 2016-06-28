@@ -14,7 +14,7 @@ const DynamicForm = ({fields, groupsList, fieldsList, handleSubmit, submitButton
         <div className='b-dynamic-form__header' >{group.title} - ({group.fields.length})</div>
         {fieldsList
           .filter(field =>
-            fields[field.name] && group.fields.indexOf(field._id) >= 0
+            fields[field.name] && group.fields.indexOf(field._id.$oid) >= 0
           )
           .map((field, index) =>
             <DynamicFieldAuto

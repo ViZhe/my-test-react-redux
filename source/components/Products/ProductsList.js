@@ -24,7 +24,7 @@ const ProductsList = ({products}) => {
     <table style={tableStyle} >
       <thead>
         <tr>
-          <th>_id1</th>
+          <th>_id</th>
           <th>o.name</th>
           <th>template</th>
           <th>edit</th>

@@ -7,7 +7,7 @@
 
 ## TODO
 - [ ] Update options
-  - [ ] load from mlab
+  - [X] load from mlab
   - [ ] templates pages
     - [ ] add
     - [ ] list
@@ -18,7 +18,7 @@
     - [ ] edit
   - [ ] fields pages
     - [ ] add
-    - [ ] list
+    - [X] list
     - [ ] edit
 - [ ] Styles
   - [ ] Stylus || PostCSS + SugarSS

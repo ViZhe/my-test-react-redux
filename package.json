@@ -41,6 +41,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "@horizon/server": "^1.1.3",
     "axios": "^0.12.0",
     "babel-polyfill": "^6.9.1",
     "babel-runtime": "^6.9.2",

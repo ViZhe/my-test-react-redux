@@ -1,15 +1,17 @@
 
 import Express from 'express'
+import horizon from '@horizon/server'
 
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import config from '../webpack/webpack.config.client.development'
+import {configDb} from './config.rethinkdb'
 
 
 const server = new Express()
 const host = process.env.HOST || '0.0.0.0'
-const port = process.env.PORT || 3000
+const port = process.env.PORT || '3000'
 const __PROD__ = process.env.NODE_ENV === 'production'
 
 const assets = __PROD__ ? require('../assets.json') : ''
@@ -45,15 +47,16 @@ server.get('*', (req, res) => {
   `)
 })
 
-
-server.listen(port, host, () =>
+const httpServer = server.listen(port, host, () =>
   console.info(`
 ######### (╮°-°)╮┳━━┳ #########
 
 # ==> Server was started.
-# ==> Link: http://0.0.0.0:${port}
+# ==> Link: http://${host}:${port}
 # ==> Mode: ${__PROD__ ? 'Production ' : 'Development'}
 
 ######### ( ╯°□°)╯ ┻━━┻ #########
 `)
 )
+
+horizon(httpServer, configDb)

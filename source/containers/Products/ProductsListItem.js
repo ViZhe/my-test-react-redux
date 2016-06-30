@@ -15,7 +15,7 @@ class ProductsListItemContainer extends Component {
     mlabHelpers.updateProductField(id, field, value).then(response => {
       const product = response.data
       const data = {
-        id: product._id.$oid,
+        id: product.id,
         field,
         value: product[field]
       }
@@ -25,16 +25,16 @@ class ProductsListItemContainer extends Component {
   }
   toggleDeleteProduct() {
     const item = this.props.item
-    this.updateProductField(item._id.$oid, 'isDeleted', !item.isDeleted)
+    this.updateProductField(item.id, 'isDeleted', !item.isDeleted)
   }
   toggleActiveProduct() {
     const item = this.props.item
-    this.updateProductField(item._id.$oid, 'isActivated', !item.isActivated)
+    this.updateProductField(item.id, 'isActivated', !item.isActivated)
   }
   destroyProduct() {
-    const itemId = this.props.item._id.$oid
+    const itemId = this.props.item.id
     mlabHelpers.destroyProduct(itemId).then(response => {
-      this.props.destroyProduct(response.data._id.$oid)
+      this.props.destroyProduct(response.data.id)
     })
   }
   render() {
@@ -48,9 +48,9 @@ class ProductsListItemContainer extends Component {
 }
 
 
-const mapStateToProps = state => ({
-  products: state.products.toJS()
-})
+// const mapStateToProps = state => ({
+//   products: state.products.toJS()
+// })
 
 const mapDispatchToProps = dispatch => ({
   updateProductField: data => dispatch(updateProductField(data)),
@@ -58,6 +58,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(ProductsListItemContainer)

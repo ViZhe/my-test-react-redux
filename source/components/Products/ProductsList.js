@@ -9,22 +9,21 @@ const ProductsList = ({products}) => {
     border: '1px solid black'
   }
 
-  const productsList = products.data || []
-  const productsWrap = productsList.length
-    ? productsList.map((item, index) =>
-      <ProductsListItem
-        key={index}
-        item={item}
-        />
-    )
-    : <tr><td className='c-area-list__empty'>Товаров нет</td></tr>
+  const hasPoducts = products.length !== 0
+  const productsList = products.map((product, index) =>
+    <ProductsListItem
+      key={index}
+      item={product}
+      />
+  )
+  const productsEmpty = <tr><td colSpan={7}>Товаров нет</td></tr>
 
   return <div className='c-products-list' >
     <h2>Products List</h2>
     <table style={tableStyle} >
       <thead>
         <tr>
-          <th>_id</th>
+          <th>id</th>
           <th>o.name</th>
           <th>template</th>
           <th>edit</th>
@@ -34,7 +33,7 @@ const ProductsList = ({products}) => {
         </tr>
       </thead>
       <tbody>
-        {products.isLoading ? 'Данные загружаются' : productsWrap}
+        {hasPoducts ? productsList : productsEmpty}
       </tbody>
     </table>
   </div>
@@ -42,7 +41,7 @@ const ProductsList = ({products}) => {
 
 
 ProductsList.propTypes = {
-  products: PropTypes.object.isRequired // TODO: details it with PropTypes.shape
+  products: PropTypes.array.isRequired // TODO: details it with PropTypes.shape
 }
 
 export default ProductsList

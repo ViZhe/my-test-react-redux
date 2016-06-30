@@ -8,13 +8,13 @@ const ProductsListItem = ({item, toggleDeleteHandler, toggleActiveHandler, destr
     border: '1px solid gray'
   }
 
-  const _id = item._id.$oid
+  const id = item.id
 
   return <tr>
-    <td style={tdStyle} >{_id}</td>
+    <td style={tdStyle} >{id}</td>
     <td style={tdStyle} >{item.options.name}</td>
     <td style={tdStyle} >{item.template}</td>
-    <td style={tdStyle} ><Link to={`/product/${_id}/edit`} >edit</Link></td>
+    <td style={tdStyle} ><Link to={`/product/${id}/edit`} >edit</Link></td>
     <td style={tdStyle} ><button onClick={toggleDeleteHandler} >{item.isDeleted ? 'restore' : 'detele'}</button></td>
     <td style={tdStyle} ><button onClick={toggleActiveHandler} >{item.isActivated ? 'deactivate' : 'activate'}</button></td>
     <td style={tdStyle} ><button onClick={destroyHandler} >destroy</button></td>

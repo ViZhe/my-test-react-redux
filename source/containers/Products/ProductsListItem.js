@@ -1,41 +1,41 @@
 
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 
-import * as mlabHelpers from '~/utils/mlab/helpers'
+import * as hz from '~/utils/horizon/helpers'
 import ProductsListItem from '~/components/Products/ProductsListItem'
-import {
-  updateProductField,
-  destroyProduct
-} from '~/core/products/actions'
 
 
 class ProductsListItemContainer extends Component {
   updateProductField(id, field, value) {
-    mlabHelpers.updateProductField(id, field, value).then(response => {
-      const product = response.data
-      const data = {
-        id: product.id,
-        field,
-        value: product[field]
-      }
-
-      this.props.updateProductField(data)
-    })
+    hz.products.update({
+      id,
+      [field]: value
+    }).subscribe(
+      _id => console.info(`
+        Type: Product Field Update
+        Id: "${_id.id}".
+        Field: "${field}".
+        Value: "${value}"
+      `),
+      err => console.error('Update Fail', err)
+    )
   }
   toggleDeleteProduct() {
-    const item = this.props.item
-    this.updateProductField(item.id, 'isDeleted', !item.isDeleted)
+    const product = this.props.product
+    this.updateProductField(product.id, 'isDeleted', !product.isDeleted)
   }
   toggleActiveProduct() {
-    const item = this.props.item
-    this.updateProductField(item.id, 'isActivated', !item.isActivated)
+    const product = this.props.product
+    this.updateProductField(product.id, 'isActivated', !product.isActivated)
   }
   destroyProduct() {
-    const itemId = this.props.item.id
-    mlabHelpers.destroyProduct(itemId).then(response => {
-      this.props.destroyProduct(response.data.id)
-    })
+    hz.products.remove(this.props.product.id).subscribe(
+      _id => console.info(`
+        Type: Product Destroy
+        Id: "${_id.id}".
+      `),
+      err => console.error('Destroy Fail', err)
+    )
   }
   render() {
     return <ProductsListItem
@@ -47,17 +47,4 @@ class ProductsListItemContainer extends Component {
   }
 }
 
-
-// const mapStateToProps = state => ({
-//   products: state.products.toJS()
-// })
-
-const mapDispatchToProps = dispatch => ({
-  updateProductField: data => dispatch(updateProductField(data)),
-  destroyProduct: id => dispatch(destroyProduct(id))
-})
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(ProductsListItemContainer)
+export default ProductsListItemContainer

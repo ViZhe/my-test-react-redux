@@ -31,8 +31,7 @@ export const initialState = fromJS({
     //   }
     // }
   ],
-  isLoading: true,
-  editable: {}
+  isLoading: true
 })
 
 export function productsReducer(state = initialState, action) {

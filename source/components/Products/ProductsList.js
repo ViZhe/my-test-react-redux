@@ -9,14 +9,14 @@ const ProductsList = ({products}) => {
     border: '1px solid black'
   }
 
-  const hasPoducts = products.length !== 0
-  const productsList = products.map((product, index) =>
+  const productsList = products.data.map((product, index) =>
     <ProductsListItem
       key={index}
-      item={product}
+      product={product}
       />
   )
   const productsEmpty = <tr><td colSpan={7}>Товаров нет</td></tr>
+  const productsLoading = <tr><td colSpan={7}>Товары загружаются</td></tr>
 
   return <div className='c-products-list' >
     <h2>Products List</h2>
@@ -33,7 +33,7 @@ const ProductsList = ({products}) => {
         </tr>
       </thead>
       <tbody>
-        {hasPoducts ? productsList : productsEmpty}
+        {products.isLoading ? productsLoading : productsList || productsEmpty}
       </tbody>
     </table>
   </div>
@@ -41,7 +41,7 @@ const ProductsList = ({products}) => {
 
 
 ProductsList.propTypes = {
-  products: PropTypes.array.isRequired // TODO: details it with PropTypes.shape
+  products: PropTypes.object.isRequired // TODO: details it with PropTypes.shape
 }
 
 export default ProductsList

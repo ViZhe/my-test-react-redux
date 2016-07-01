@@ -3,54 +3,51 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 import {
-  updateProduct,
-  loadProduct
+  loadProducts
 } from '~/core/products/actions'
-import * as mlabHelpers from '~/utils/mlab/helpers'
+import * as hz from '~/utils/horizon/helpers'
 import DynamicFormCreator from '../DynamicForm/DynamicFormCreator'
 
 
 export default class EditProduct extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: true
-    }
-  }
   componentDidMount() {
-    mlabHelpers.getProduct(this.props.params.id).then(response => {
-      this.props.dispatch(loadProduct(response.data))
-      this.setState({
-        loading: false
-      })
+    hz.products.watch().subscribe(response => {
+      this.props.dispatch(loadProducts(response))
     })
   }
   updateProduct(data) {
-    const product = {
+    hz.products.update({
+      id: this.props.params.id,
       updatedAt: Math.floor(Date.now() / 1000), // get timestamp
       options: data
-    }
-
-    mlabHelpers.updateProduct(this.props.params.id, product).then(response => {
-      this.props.dispatch(updateProduct(response.data))
-    })
+    }).subscribe(
+      _id => console.info(`
+        Type: Product Update
+        Id: "${_id.id}".
+      `),
+      err => console.error('Update Fail', err)
+    )
   }
   render() {
-    const {loading} = this.state
-    const {product} = this.props
+    const {products} = this.props
+
+    const product = products.data.filter(product => {
+      return product.id === this.props.params.id
+    })
 
     const former = <DynamicFormCreator
       template={product.template || 'defaultTemplate'}
       onSubmit={::this.updateProduct}
       submitButtonText='Обновить товар'
       />
+
     return <div>
       <h2>Edit Product - {this.props.params.id}</h2>
-      {(loading && 'Данные загружаются') || former}
+      {product ? former : 'Данные загружаются'}
     </div>
   }
 }
 
 export default connect(state => ({
-  product: state.products.toJS().editable
+  products: state.products.toJS()
 }))(EditProduct)

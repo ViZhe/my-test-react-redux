@@ -4,8 +4,9 @@ import {connect} from 'react-redux'
 import {reset} from 'redux-form'
 
 import DynamicFormCreator from '../DynamicForm/DynamicFormCreator'
-import {addProduct} from '~/core/products/actions'
-import * as mlabHelpers from '~/utils/mlab/helpers'
+// import {addProduct} from '~/core/products/actions'
+import * as hz from '~/utils/horizon/helpers'
+// import * as mlabHelpers from '~/utils/mlab/helpers'
 
 
 export class AddProduct extends Component {
@@ -19,10 +20,15 @@ export class AddProduct extends Component {
       options: data
     }
 
-    mlabHelpers.addProducts(product).then(response => {
-      dispatch(addProduct(response.data))
-      dispatch(reset('dynamicForm'))
-    })
+    hz.products.store(product).subscribe(
+      _id => {
+        dispatch(reset('dynamicForm'))
+        console.info(`
+        Type: Product Created
+        Id: "${_id.id}".
+      `)},
+      err => console.error('Created Fail', err)
+    )
   }
   render() {
     const {options} = this.props

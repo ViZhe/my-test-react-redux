@@ -1,11 +1,20 @@
 
 import React, {Component} from 'react'
-import {subscribe} from 'horizon-react'
+import {connect} from 'react-redux'
 
+import {
+  loadProducts
+} from '~/core/products/actions'
+import * as hz from '~/utils/horizon/helpers'
 import ProductsList from '~/components/Products/ProductsList'
 
 
 export class ProductsListContainer extends Component {
+  componentDidMount() {
+    hz.products.watch().subscribe(response => {
+      this.props.dispatch(loadProducts(response))
+    })
+  }
   render() {
     return <ProductsList
       {...this.props}
@@ -14,10 +23,10 @@ export class ProductsListContainer extends Component {
 }
 
 
-const mapDataToProps = {
-  products: hz => hz('products')
-}
+const mapStateToProps = state => ({
+  products: state.products.toJS()
+})
 
-export default subscribe({
-  mapDataToProps
-})(ProductsListContainer)
+export default connect(
+  mapStateToProps
+)(ProductsListContainer)

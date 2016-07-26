@@ -4,7 +4,7 @@ import {GITHUB_CONFIG} from './config'
 
 const getGithub = (username, link) =>
   new Promise((resolve, reject) => {
-    fetch(link)
+    fetch(`https://api.github.com/${link}?client_id=${GITHUB_CONFIG.clientId}&client_secret=${GITHUB_CONFIG.clientSecret}`)
       .then(response => {
         resolve(response.json())
       })
@@ -14,10 +14,10 @@ const getGithub = (username, link) =>
   })
 
 const getRepos = username =>
-  getGithub(username, `https://api.github.com/users/${username}/repos?client_id=${GITHUB_CONFIG.clientId}&client_secret=${GITHUB_CONFIG.clientSecret}`)
+  getGithub(username, `users/${username}/repos`)
 
 const getUser = username =>
-  getGithub(username, `https://api.github.com/users/${username}?client_id=${GITHUB_CONFIG.clientId}&client_secret=${GITHUB_CONFIG.clientSecret}`)
+  getGithub(username, `users/${username}`)
 
 const getGithubInfo = (username = 'ViZhe', ctx) => {
   Promise.all([
